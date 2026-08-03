@@ -14,7 +14,7 @@
 .hero__lede{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:58ch}
 
 .cover{padding-bottom:0}
-.cover .m-shot{max-width:640px; margin:0 auto}
+.cover .m-shot{max-width:760px; margin:0 auto}
 
 /* microcopy exhibit: headline / subtext / cta, as recommended verbatim */
 .copy{border:1px solid var(--line); border-radius:var(--r); background:var(--bg);
@@ -35,6 +35,37 @@
 .step__n{font:600 1rem/1.6 var(--mono); color:var(--muted)}
 .step p{font-size:1.02rem; color:var(--ink)}
 
+/* flip cards: assumption struck through, reframed question underneath */
+.flip{border:1px solid var(--line); border-radius:var(--r); padding:clamp(1.2em,2.4vw,1.7em);
+  display:flex; flex-direction:column; gap:.85em}
+.flip__k{font:500 var(--t-label)/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.flip__q{font-size:1rem; color:var(--muted); text-decoration:line-through;
+  text-decoration-color:var(--muted); text-decoration-thickness:1.5px}
+.flip__r{font-size:1.06rem; font-weight:600; color:var(--ink); line-height:1.35}
+.flip__a{font-size:.92rem; color:var(--text); line-height:1.5}
+
+/* screen audit block: working / issues / fixes */
+.screen{border-top:1px solid var(--line); padding:clamp(1.8em,3.6vw,2.6em) 0}
+.screen:first-child{border-top:0; padding-top:0}
+.screen__head{display:flex; align-items:baseline; gap:.8em; flex-wrap:wrap; margin-bottom:1.3em}
+.screen__n{font:600 1rem/1 var(--mono); color:var(--accent)}
+.screen__cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:clamp(1.4em,3vw,2.2em)}
+.screen__col span{display:block; margin-bottom:.6em}
+.working{color:var(--pos)} .issue{color:var(--neg)} .fix{color:var(--accent)}
+.screen__col ul{display:flex; flex-direction:column; gap:.45em}
+.screen__col li{font-size:.92rem; line-height:1.5; color:var(--text); position:relative; padding-left:1.1em}
+.screen__col li::before{content:'\2013'; position:absolute; left:0; color:var(--muted)}
+
+/* mini comparison table */
+.mini{border:1px solid var(--line); border-radius:var(--r); overflow:hidden}
+.mini__row{display:grid; grid-template-columns:1.4fr .8fr .8fr; align-items:center}
+.mini__row + .mini__row{border-top:1px solid var(--line-soft)}
+.mini__row div{padding:.85em 1.1em; font-size:.92rem}
+.mini__row--head{background:var(--well)}
+.mini__row--head div{font:500 var(--t-label)/1 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.mark{width:9px; height:9px; border-radius:50%; display:inline-block}
+.mark--yes{background:var(--pos)} .mark--no{background:var(--neg); opacity:.55}
+
 .close{border-top:1px solid var(--line); padding-top:clamp(2.2em,5vw,3.6em);
   padding-bottom:clamp(48px,8vw,96px)}
 .close__f{max-width:22ch}
@@ -42,6 +73,10 @@
   font:500 var(--t-label)/1.6 var(--mono); letter-spacing:.13em; text-transform:uppercase;
   color:var(--muted)}
 .sign b{color:var(--ink); font-weight:600}
+
+@media (max-width:640px){
+  .mini__row{grid-template-columns:1.2fr .6fr .6fr}
+}
 </style>
 
 <a class="m-skip" href="#main">Skip to case study</a>
@@ -52,8 +87,8 @@
   <a class="top__back" href="/">&larr; Back</a>
   <div class="m-tags">
     <span class="m-tag">UX Audit</span>
+    <span class="m-tag">Heuristic Evaluation</span>
     <span class="m-tag">UX Writing</span>
-    <span class="m-tag">Wireframe Review</span>
     <span class="m-tag">Consulting</span>
   </div>
 </div>
@@ -61,14 +96,15 @@
 <header class="hero">
   <h1 class="m-hero">A shoppable-video app was losing people <span style="color:var(--accent)">before they ever uploaded a video</span>.</h1>
   <p class="m-lede hero__lede">Reelify lets Shopify brands add TikTok-style shoppable video to their product
-    pages. The concept was strong; the onboarding wasn&rsquo;t. I ran a UX and microcopy audit &mdash; the
-    wireframe-level fixes and the words &mdash; to close the gap between install and first upload.</p>
+    pages. The concept was strong; the onboarding wasn&rsquo;t. I ran a UX audit &mdash; five key screens,
+    a full heuristic evaluation, and a microcopy rewrite &mdash; to close the gap between install and first
+    upload.</p>
 </header>
 
 <section class="m-sec cover">
   <div class="m-well">
     <div class="m-shot">
-      <img src="@IMG_WIREFRAME@" alt="Lo-fi wireframe of the Display Style Selection onboarding screen, showing four layout option cards — Stories, Carousel, Grid, List — with Skip for now and Next actions." width="1658" height="1010" loading="lazy">
+      <img src="@IMG_ONBOARDING@" alt="Reelify's real onboarding screen: Welcome to Reelify, Step 1 of 3, with options to import video from Instagram, TikTok, computer, or Shopify." width="2442" height="1344">
     </div>
   </div>
 </section>
@@ -96,6 +132,40 @@
   </div>
 </section>
 
+<!-- ── APPROACH: REVERSE THINKING ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Approach</span>
+    <h2 class="m-h2">Flipping the question to find where it actually breaks</h2>
+    <p>The standard framing &mdash; &ldquo;how do we get users to finish onboarding&rdquo; &mdash; is too
+      comfortable to surface real friction. Every screen in this audit started from its opposite: what
+      would make someone quit right here?</p>
+  </div>
+  <div class="m-grid m-grid-3">
+    <div class="flip">
+      <span class="flip__k">Comfortable question</span>
+      <p class="flip__q">How do we get users to finish onboarding?</p>
+      <p class="flip__r">What would make a user quit halfway?</p>
+      <p class="flip__a">They don&rsquo;t see the ROI, can&rsquo;t preview outcomes, or get stuck with no
+        content to work with.</p>
+    </div>
+    <div class="flip">
+      <span class="flip__k">Comfortable question</span>
+      <p class="flip__q">How do we show layout choices?</p>
+      <p class="flip__r">What would confuse a non-technical store owner?</p>
+      <p class="flip__a">Icons are vague, there are no visual examples, and nothing guides them toward
+        what works best.</p>
+    </div>
+    <div class="flip">
+      <span class="flip__k">Comfortable question</span>
+      <p class="flip__q">How do we explain product tagging?</p>
+      <p class="flip__r">What would make someone skip this step?</p>
+      <p class="flip__a">Tagging feels technical and unimportant, with no visual cue for what it earns
+        you.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ── SCOPE ── -->
 <section class="m-sec m-stack-lg">
   <div class="m-stack m-measure">
@@ -120,51 +190,148 @@
   </div>
 </section>
 
-<!-- ── ONBOARDING AUDIT ── -->
+<!-- ── SCREENS AUDIT ── -->
 <section class="m-sec m-stack-lg">
   <div class="m-stack m-measure">
-    <span class="m-label">Onboarding audit</span>
-    <h2 class="m-h2">Display Style Selection: one screen, six things doing the work</h2>
-    <p>Early in onboarding, merchants choose how their videos will appear &mdash; Stories, Carousel, Grid
-      or List. It&rsquo;s a small decision with an outsized effect on drop-off if it feels irreversible or
-      overwhelming.</p>
+    <span class="m-label">Key screens</span>
+    <h2 class="m-h2">Five screens, audited the same way every time</h2>
+    <p>What&rsquo;s already working, where it actually breaks, and the specific fix &mdash; for every
+      screen between install and a merchant&rsquo;s first live video.</p>
   </div>
 
-  <div class="m-grid m-grid-3">
-    <div class="m-stack"><h3 class="m-h3">Header, with reassurance</h3>
-      <p class="m-dim">&ldquo;Choose Your Display Style&rdquo; plus &ldquo;you can change later&rdquo; &mdash;
-        sets context and removes the fear of a permanent choice.</p></div>
-    <div class="m-stack"><h3 class="m-h3">Four style cards</h3>
-      <p class="m-dim">Arranged in a row for quick side-by-side comparison, instead of one option at a
-        time.</p></div>
-    <div class="m-stack"><h3 class="m-h3">Preview placeholders</h3>
-      <p class="m-dim">Visual boxes inside each card, so recognition doesn&rsquo;t depend on reading every
-        label.</p></div>
-    <div class="m-stack"><h3 class="m-h3">Primary action: Next</h3>
-      <p class="m-dim">One clear way forward, bottom-right, doing the one job of moving onboarding
-        along.</p></div>
-    <div class="m-stack"><h3 class="m-h3">Secondary action: Skip for now</h3>
-      <p class="m-dim">An escape hatch from choice overload &mdash; present, but never competing with the
-        primary path.</p></div>
-    <div class="m-stack"><h3 class="m-h3">Centred, spacious layout</h3>
-      <p class="m-dim">No clutter competing for attention on a screen a first-time user sees once.</p></div>
-  </div>
-
-  <div class="m-split">
-    <div class="m-stack">
-      <span class="m-label">Suggested next</span>
-      <h3 class="m-h3">Three low-effort additions</h3>
-      <p class="m-dim">None of these were broken &mdash; they&rsquo;re proposed refinements for wherever
-        the screen hasn&rsquo;t already caught up to them.</p>
+  <div>
+    <div class="screen">
+      <div class="screen__head"><span class="screen__n">01</span><h3 class="m-h3">Onboarding &mdash; Import Videos</h3></div>
+      <div class="screen__cols">
+        <div class="screen__col"><span class="working">Working</span><ul>
+          <li>A clear CTA and a logical entry point for setup</li>
+          <li>Minimal distractions on the first screen a merchant sees</li>
+        </ul></div>
+        <div class="screen__col"><span class="issue">Issues</span><ul>
+          <li>No ROI framing &mdash; doesn&rsquo;t say why the tool matters</li>
+          <li>No demo content for merchants without videos yet, and no social proof</li>
+        </ul></div>
+        <div class="screen__col"><span class="fix">Fixes</span><ul>
+          <li>&ldquo;Convert viewers into buyers &mdash; stores see up to 3&times; more
+            engagement.&rdquo;</li>
+          <li>A sample-video fallback, plus a trust badge (&ldquo;Trusted by 2,000+ Shopify
+            stores&rdquo;)</li>
+        </ul></div>
+      </div>
     </div>
-    <ul class="m-list">
-      <li><b>A &ldquo;Step 2 of X&rdquo; indicator</b> &mdash; so the screen states its place in the
-        sequence instead of feeling open-ended.</li>
-      <li><b>A &ldquo;Recommended&rdquo; badge</b> on one option, to give undecided users a default
-        rather than four blank choices.</li>
-      <li><b>Icon-based previews</b> in the placeholder boxes, hinting at the layout difference even
-        before real content exists.</li>
-    </ul>
+
+    <div class="screen">
+      <div class="screen__head"><span class="screen__n">02</span><h3 class="m-h3">Display Style Selection</h3></div>
+      <div class="screen__cols">
+        <div class="screen__col"><span class="working">Working</span><ul>
+          <li>Layout choices are named simply, and the choice is reassured as reversible</li>
+        </ul></div>
+        <div class="screen__col"><span class="issue">Issues</span><ul>
+          <li>Emoji icons stand in for real previews, and nothing recommends a default</li>
+        </ul></div>
+        <div class="screen__col"><span class="fix">Fixes</span><ul>
+          <li>Real screenshots or short preview clips in place of icons</li>
+          <li>A &ldquo;Recommended&rdquo; mark on one option, so undecided merchants have a default</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="screen__head"><span class="screen__n">03</span><h3 class="m-h3">Product Tagging</h3></div>
+      <div class="screen__cols">
+        <div class="screen__col"><span class="working">Working</span><ul>
+          <li>Video on the left, product selection on the right &mdash; feels native to timeline editing</li>
+        </ul></div>
+        <div class="screen__col"><span class="issue">Issues</span><ul>
+          <li>&ldquo;Scrubber&rdquo; is jargon; the dropdown has no product images</li>
+          <li>No confirmation once a tag is placed, and no marker for where tags exist on the timeline</li>
+        </ul></div>
+        <div class="screen__col"><span class="fix">Fixes</span><ul>
+          <li>&ldquo;Tagged videos get 2.8&times; more clicks&rdquo; &mdash; said once, where it&rsquo;s
+            earned</li>
+          <li>Product thumbnails in the dropdown, visible tag markers, a quiet &ldquo;Tagged&rdquo;
+            confirmation</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="screen__head"><span class="screen__n">04</span><h3 class="m-h3">Enable in Theme Editor</h3></div>
+      <div class="screen__cols">
+        <div class="screen__col"><span class="working">Working</span><ul>
+          <li>Instructions are broken into steps with a clear intent</li>
+        </ul></div>
+        <div class="screen__col"><span class="issue">Issues</span><ul>
+          <li>No visual of Shopify&rsquo;s own theme editor; &ldquo;best section&rdquo; is vague</li>
+        </ul></div>
+        <div class="screen__col"><span class="fix">Fixes</span><ul>
+          <li>A short embedded clip of the actual placement flow</li>
+          <li>Concrete suggestions &mdash; &ldquo;below the hero image,&rdquo; not &ldquo;best section&rdquo;</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="screen__head"><span class="screen__n">05</span><h3 class="m-h3">Pricing</h3></div>
+      <div class="screen__cols">
+        <div class="screen__col"><span class="working">Working</span><ul>
+          <li>Free-versus-paid is direct, and the free plan keeps the entry barrier low</li>
+        </ul></div>
+        <div class="screen__col"><span class="issue">Issues</span><ul>
+          <li>No CTA to upgrade; unclear what happens past the free plan&rsquo;s view limit</li>
+        </ul></div>
+        <div class="screen__col"><span class="fix">Fixes</span><ul>
+          <li>A direct upgrade CTA, plus a short FAQ on hitting the free-plan limit</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <figure class="m-fig">
+    <div class="m-well m-well--tight"><div class="m-shot">
+      <img src="@IMG_WIREFRAME@" alt="Lo-fi wireframe of the Display Style Selection onboarding screen, showing four layout option cards — Stories, Carousel, Grid, List — with Skip for now and Next actions." width="1658" height="1010"></div></div>
+    <figcaption class="m-cap"><b>Display Style Selection, at wireframe stage.</b> The structural fix &mdash;
+      four comparable cards, a reversible choice, an escape hatch &mdash; came before the icons-versus-
+      real-previews issue above was even in scope.</figcaption>
+  </figure>
+</section>
+
+<!-- ── PRIORITY RECOMMENDATIONS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Priority</span>
+    <h2 class="m-h2">Five fixes, ranked by what they actually move</h2>
+  </div>
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head m-swap--wide"><span>Fix</span><span>Why it matters</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">Add ROI framing in onboarding</span><span class="in">Converts curiosity into action by naming the value early</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">Use real previews for layouts</span><span class="in">Reduces decision fatigue and builds confidence in the choice</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">Educate on product tagging</span><span class="in">Boosts completion by showing why tagging earns more conversions</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">Simplify language &amp; feedback</span><span class="in">Lowers friction, especially for non-technical store owners</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">Strengthen the upgrade flow</span><span class="in">Drives revenue with a clearer incentive and CTA</span></div>
+  </div>
+</section>
+
+<!-- ── HEURISTIC AUDIT ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Heuristic audit</span>
+    <h2 class="m-h2">The same ten checks, run against the whole product</h2>
+    <p>Beyond the five screens above, a full pass against Nielsen&rsquo;s usability heuristics &mdash; so
+      nothing structural was missed by only looking where the obvious friction already was.</p>
+  </div>
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head m-swap--wide"><span>Heuristic &mdash; what&rsquo;s missing</span><span>Suggested fix</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Visibility of system status</b> &mdash; no confirmation after tagging</span><span class="in">A &ldquo;Tag added&rdquo; toast, or a marker on the timeline</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Match with the real world</b> &mdash; &ldquo;scrubber&rdquo; means nothing to non-technical users</span><span class="in">Replace with &ldquo;timeline&rdquo;</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>User control &amp; freedom</b> &mdash; no fallback without an uploaded video</span><span class="in">A sample video available for testing the flow</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Consistency &amp; standards</b> &mdash; the layout picker uses emoji, unlike the rest of the UI</span><span class="in">Visual layout thumbnails instead</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Error prevention</b> &mdash; no preview before a style is published</span><span class="in">A preview step before confirming</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Recognition over recall</b> &mdash; products shown as text-only names when tagging</span><span class="in">Product thumbnails in a quick-pick UI</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Flexibility &amp; efficiency</b> &mdash; no steer for merchants who don&rsquo;t have a preference</span><span class="in">Mark one layout &ldquo;Best for mobile,&rdquo; and similar</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Aesthetic &amp; minimalist design</b> &mdash; the style screen reads flat and unclear</span><span class="in">Side-by-side previews or small animated examples</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Recognise &amp; recover from errors</b> &mdash; no way to see if a tag landed at the right timestamp</span><span class="in">Tag markers on the timeline or preview</span></div>
+    <div class="m-swap m-swap--wide"><span class="out"><b>Help &amp; documentation</b> &mdash; no explanation for why tagging matters</span><span class="in">A short tip: &ldquo;Tagged videos get 2.8&times; more clicks&rdquo;</span></div>
   </div>
 </section>
 
@@ -173,9 +340,9 @@
   <div class="m-stack m-measure">
     <span class="m-label">Microcopy</span>
     <h2 class="m-h2">Rewriting the words between install and first upload</h2>
-    <p>Wireframes fix structure; they don&rsquo;t fix a welcome screen that undersells the product. The
-      audit&rsquo;s second half was a line-by-line rewrite of the copy carrying a merchant through their
-      first session.</p>
+    <p>The heuristic audit fixes structure; it doesn&rsquo;t fix a welcome screen that undersells the
+      product. The second half of the audit was a line-by-line rewrite of the copy carrying a merchant
+      through their first session.</p>
   </div>
 
   <div class="m-split">
@@ -228,10 +395,10 @@
     next action instead of leaving them idle on a static confirmation screen.</p>
 </section>
 
-<!-- ── MICROCOPY: RETENTION ── -->
+<!-- ── RETENTION: UNINSTALL FLOW ── -->
 <section class="m-sec m-stack-lg">
   <div class="m-stack m-measure">
-    <span class="m-label">Retention</span>
+    <span class="m-label">Retention &mdash; leaving the app</span>
     <h2 class="m-h2">The uninstall flow answers the reason it was actually given</h2>
     <p>Most cancellation flows show the same message regardless of why someone is leaving. This one
       branches on the merchant&rsquo;s stated reason, so the response is relevant rather than generic.</p>
@@ -262,18 +429,65 @@
   </div>
 </section>
 
-<!-- ── EXPECTED IMPACT ── -->
+<!-- ── RETENTION: HIGH-INTENT MOMENTS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Retention &mdash; high-intent moments</span>
+    <h2 class="m-h2">Before someone leaves to compare, not after</h2>
+    <p>The uninstall flow catches people on their way out. This is earlier &mdash; the moment someone is
+      quietly weighing Reelify against an alternative, before they&rsquo;ve decided anything.</p>
+  </div>
+
+  <div class="m-split">
+    <div class="m-stack">
+      <h3 class="m-h3">What was already there</h3>
+      <ul class="m-list m-dim">
+        <li>A clean UI with clear structure</li>
+        <li>Informative feature sections</li>
+        <li>Trust-building elements already in place</li>
+      </ul>
+    </div>
+    <div class="m-stack">
+      <h3 class="m-h3">Suggested additions</h3>
+      <ul class="m-list m-dim">
+        <li><b>An exit-intent moment</b> &mdash; &ldquo;Before you go, here&rsquo;s what people like you
+          found helpful&rdquo;</li>
+        <li><b>A micro feedback prompt</b> &mdash; &ldquo;Is something missing for you?&rdquo; with three
+          tap options</li>
+        <li><b>Real testimonials with context</b> &mdash; &ldquo;We chose this tool over [X]
+          because&hellip;&rdquo;</li>
+        <li><b>Softer CTAs than &ldquo;Cancel&rdquo;</b> &mdash; &ldquo;Need help deciding?&rdquo; or
+          &ldquo;See why others switched&rdquo;</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mini">
+    <div class="mini__row mini__row--head"><div>Feature</div><div>Reelify</div><div>Competitor</div></div>
+    <div class="mini__row"><div>Custom workflow</div><div><span class="mark mark--yes"></span></div><div><span class="mark mark--no"></span></div></div>
+    <div class="mini__row"><div>Onboarding help</div><div><span class="mark mark--yes"></span></div><div><span class="mark mark--no"></span></div></div>
+    <div class="mini__row"><div>Transparent pricing</div><div><span class="mark mark--yes"></span></div><div><span class="mark mark--no"></span></div></div>
+  </div>
+  <p class="m-measure m-dim">Visual and factual, not a takedown &mdash; a comparison a merchant can check
+    for themselves is worth more than a claim they can&rsquo;t.</p>
+
+  <div class="m-quote m-measure">
+    <p>Comparing tools? We&rsquo;ll help you decide &mdash; no pressure.</p>
+    <cite>Suggested copy style: honest, calm, human</cite>
+  </div>
+</section>
+
+<!-- ── SUMMARY ── -->
 <section class="m-sec m-stack m-measure">
   <span class="m-label">Expected impact</span>
   <h2 class="m-h2">What this was projected to move, going in</h2>
   <p class="m-dim">This audit was delivered as a report and a walkthrough, not a shipped release &mdash;
-    the figures below are the projected impact the recommendations were built against, not measured
-    results.</p>
+    what follows is the projected impact the recommendations were built against, not measured results.</p>
   <ul class="m-list">
     <li>A clearer welcome screen raising activation rate</li>
-    <li>A more motivating onboarding flow producing more first-video uploads per install</li>
-    <li>Guided empty states reducing drop-off mid-journey</li>
-    <li>Context-aware retention copy reducing churn at the uninstall step</li>
+    <li>Real previews and a recommended default reducing decision fatigue at the layout step</li>
+    <li>Tagging copy and visual feedback improving completion of the tagging step</li>
+    <li>Context-aware retention copy reducing churn at the uninstall step and before it</li>
   </ul>
 </section>
 
