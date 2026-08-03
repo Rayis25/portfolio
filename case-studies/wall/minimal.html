@@ -232,13 +232,21 @@ b,strong{font-weight:600; color:var(--ink)}
 .m-shot--phone{max-width:222px; margin:0 auto}
 .m-shot--tall{max-width:280px; margin:0 auto}
 
-/* cover collage — three real screens in a horizontal row under the hero */
+/* cover — three real screens fanned like a hand of cards, sharing one pivot */
 .cover{padding-bottom:0}
-.cover .m-well{gap:clamp(14px,2.6vw,30px); flex-wrap:wrap; padding:clamp(26px,5vw,54px) clamp(18px,3.4vw,36px)}
-.cover .m-shot{max-width:200px}
-.cover .m-shot:nth-child(1){transform:rotate(-3deg)}
-.cover .m-shot:nth-child(2){transform:rotate(1.5deg)}
-.cover .m-shot:nth-child(3){transform:rotate(4deg)}
+.cover .m-well{position:relative; overflow:visible; display:block;
+  height:clamp(320px,44vw,468px); padding:0}
+.cover .m-shot{position:absolute; bottom:clamp(14px,3vw,26px); left:50%;
+  width:clamp(122px,26vw,190px); transform-origin:50% 100%;
+  box-shadow:0 26px 46px -20px rgba(20,20,24,.35), 0 8px 18px -9px rgba(20,20,24,.22)}
+@media (prefers-color-scheme:dark){
+  .cover .m-shot{box-shadow:0 26px 50px -18px rgba(0,0,0,.65), 0 8px 20px -9px rgba(0,0,0,.5)}
+}
+:root[data-theme="dark"] .cover .m-shot{box-shadow:0 26px 50px -18px rgba(0,0,0,.65), 0 8px 20px -9px rgba(0,0,0,.5)}
+:root[data-theme="light"] .cover .m-shot{box-shadow:0 26px 46px -20px rgba(20,20,24,.35), 0 8px 18px -9px rgba(20,20,24,.22)}
+.cover .m-shot:nth-child(1){transform:translateX(-50%) rotate(-12deg); z-index:1}
+.cover .m-shot:nth-child(2){transform:translateX(-50%) rotate(0deg); z-index:3}
+.cover .m-shot:nth-child(3){transform:translateX(-50%) rotate(12deg); z-index:2}
 
 /* notification rows */
 .notif{border-top:1px solid var(--line)}
