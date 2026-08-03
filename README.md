@@ -1,12 +1,13 @@
 # Portfolio
 
-Case studies by **Muhammad Rayis**, Lead UX Designer.
+Case studies by **Muhammad Rayis**, Product & UX Design.
 
 | Page | Live file | Source |
 | --- | --- | --- |
 | Index | [`index.html`](index.html) | [`src/index.minimal.html`](src/index.minimal.html) |
 | Draftroom — solving project management for creative teams | [`draftroom/index.html`](draftroom/index.html) | [`src/cases/draftroom/`](src/cases/draftroom/) |
 | Wall — product strategy for a hyper-local social app | [`wall/index.html`](wall/index.html) | [`src/cases/wall/`](src/cases/wall/) |
+| Reelify — UX and microcopy audit for a Shopify shoppable-video app | [`reelify/index.html`](reelify/index.html) | [`src/cases/reelify/`](src/cases/reelify/) |
 
 Two themes are maintained. `minimal` is live; `marked` is kept buildable so the
 directions can be compared rather than remembered.

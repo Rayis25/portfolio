@@ -1,0 +1,289 @@
+<title>Reelify — A UX and microcopy audit for a shoppable-video app</title>
+<meta name="description" content="UX audit case study: diagnosing onboarding drop-off in a Shopify shoppable-video app and rewriting its wireframe and microcopy.">
+<style>/*@FONTS@*/</style>
+<style>/*@THEME@*/</style>
+<style>
+/* ===== case-specific ===== */
+.top{display:flex; flex-direction:column; gap:.9em; padding:clamp(26px,4vw,46px) 0 clamp(38px,6vw,72px)}
+.top__back{display:inline-flex; align-items:center; gap:.5em; width:fit-content;
+  font-size:.98rem; color:var(--muted); font-weight:500}
+.top__back:hover{color:var(--ink); text-decoration:none}
+
+.hero{padding-bottom:clamp(30px,5vw,52px)}
+.hero h1{max-width:20ch}
+.hero__lede{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:58ch}
+
+.cover{padding-bottom:0}
+.cover .m-shot{max-width:640px; margin:0 auto}
+
+/* microcopy exhibit: headline / subtext / cta, as recommended verbatim */
+.copy{border:1px solid var(--line); border-radius:var(--r); background:var(--bg);
+  padding:clamp(1.3em,2.8vw,2em); display:flex; flex-direction:column; gap:.9em}
+.copy__h{font-size:clamp(1.15rem,2vw,1.5rem); line-height:1.28; letter-spacing:-.018em;
+  font-weight:600; color:var(--ink)}
+.copy__s{font-size:.98rem; line-height:1.55; color:var(--text)}
+.copy__cta{display:inline-flex; align-items:center; gap:.5em; width:fit-content;
+  background:var(--accent); color:#fff; font-weight:600; font-size:.9rem;
+  padding:.62em 1.1em; border-radius:var(--r-pill)}
+.copy__cta::after{content:'\2192'}
+
+/* onboarding steps: numbered, emoji retained verbatim as recommended copy */
+.steps{display:flex; flex-direction:column}
+.step{display:grid; grid-template-columns:2.4rem minmax(0,1fr); gap:0 1.2em;
+  padding:1.1em 0; border-top:1px solid var(--line-soft)}
+.step:first-child{border-top:0; padding-top:0}
+.step__n{font:600 1rem/1.6 var(--mono); color:var(--muted)}
+.step p{font-size:1.02rem; color:var(--ink)}
+
+.close{border-top:1px solid var(--line); padding-top:clamp(2.2em,5vw,3.6em);
+  padding-bottom:clamp(48px,8vw,96px)}
+.close__f{max-width:22ch}
+.sign{display:flex; flex-wrap:wrap; gap:.6em 2.5em; margin-top:clamp(1.8em,4vw,2.8em);
+  font:500 var(--t-label)/1.6 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted)}
+.sign b{color:var(--ink); font-weight:600}
+</style>
+
+<a class="m-skip" href="#main">Skip to case study</a>
+
+<div class="m-wrap">
+
+<div class="top">
+  <a class="top__back" href="/">&larr; Back</a>
+  <div class="m-tags">
+    <span class="m-tag">UX Audit</span>
+    <span class="m-tag">UX Writing</span>
+    <span class="m-tag">Wireframe Review</span>
+    <span class="m-tag">Consulting</span>
+  </div>
+</div>
+
+<header class="hero">
+  <h1 class="m-hero">A shoppable-video app was losing people <span style="color:var(--accent)">before they ever uploaded a video</span>.</h1>
+  <p class="m-lede hero__lede">Reelify lets Shopify brands add TikTok-style shoppable video to their product
+    pages. The concept was strong; the onboarding wasn&rsquo;t. I ran a UX and microcopy audit &mdash; the
+    wireframe-level fixes and the words &mdash; to close the gap between install and first upload.</p>
+</header>
+
+<section class="m-sec cover">
+  <div class="m-well">
+    <div class="m-shot">
+      <img src="@IMG_WIREFRAME@" alt="Lo-fi wireframe of the Display Style Selection onboarding screen, showing four layout option cards — Stories, Carousel, Grid, List — with Skip for now and Next actions." width="1658" height="1010" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
+<!-- ── ABOUT ── -->
+<section class="m-sec m-split">
+  <div class="m-stack">
+    <span class="m-label">About</span>
+    <p class="m-stmt">Reelify is a Shopify app: install it, and shoppers can buy directly from a video
+      playing on your product page.</p>
+    <p>A strong concept was losing users at the door. Onboarding friction, unclear value delivery and
+      no in-app engagement loop meant many merchants never got past their first session &mdash; so the
+      video feature never got the chance to prove itself.</p>
+  </div>
+  <div class="m-stack">
+    <span class="m-label">Details</span>
+    <dl class="m-meta">
+      <div><dt>Role</dt><dd>UX/UI Consultant &mdash; Frogscape</dd></div>
+      <div><dt>Engagement</dt><dd>UX audit &amp; microcopy rewrite</dd></div>
+      <div><dt>Timeframe</dt><dd>7&ndash;14 days</dd></div>
+      <div><dt>Client</dt><dd>Reelify (Shopify app)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ── SCOPE ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Scope</span>
+    <h2 class="m-h2">Three passes: audit, review, and a report the team could act on</h2>
+    <p>The brief was deliberately narrow &mdash; find where onboarding was actually losing people, not a
+      redesign of the whole app.</p>
+  </div>
+  <div class="m-grid m-grid-3">
+    <div class="m-stack"><span class="m-tag">01</span>
+      <h3 class="m-h3">Onboarding audit</h3>
+      <p class="m-dim">Full walk of the install-to-first-upload journey, flagging friction points and
+        drop-off triggers with wireframe-level fixes.</p></div>
+    <div class="m-stack"><span class="m-tag">02</span>
+      <h3 class="m-h3">Core screen review</h3>
+      <p class="m-dim">A surface-level pass on the dashboard, analytics and upload screens, prioritised
+        by impact rather than exhaustive detail.</p></div>
+    <div class="m-stack"><span class="m-tag">03</span>
+      <h3 class="m-h3">Report &amp; walkthrough</h3>
+      <p class="m-dim">An annotated report with visual recommendations, delivered with a live session
+        rather than left to be read cold.</p></div>
+  </div>
+</section>
+
+<!-- ── ONBOARDING AUDIT ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Onboarding audit</span>
+    <h2 class="m-h2">Display Style Selection: one screen, six things doing the work</h2>
+    <p>Early in onboarding, merchants choose how their videos will appear &mdash; Stories, Carousel, Grid
+      or List. It&rsquo;s a small decision with an outsized effect on drop-off if it feels irreversible or
+      overwhelming.</p>
+  </div>
+
+  <div class="m-grid m-grid-3">
+    <div class="m-stack"><h3 class="m-h3">Header, with reassurance</h3>
+      <p class="m-dim">&ldquo;Choose Your Display Style&rdquo; plus &ldquo;you can change later&rdquo; &mdash;
+        sets context and removes the fear of a permanent choice.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Four style cards</h3>
+      <p class="m-dim">Arranged in a row for quick side-by-side comparison, instead of one option at a
+        time.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Preview placeholders</h3>
+      <p class="m-dim">Visual boxes inside each card, so recognition doesn&rsquo;t depend on reading every
+        label.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Primary action: Next</h3>
+      <p class="m-dim">One clear way forward, bottom-right, doing the one job of moving onboarding
+        along.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Secondary action: Skip for now</h3>
+      <p class="m-dim">An escape hatch from choice overload &mdash; present, but never competing with the
+        primary path.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Centred, spacious layout</h3>
+      <p class="m-dim">No clutter competing for attention on a screen a first-time user sees once.</p></div>
+  </div>
+
+  <div class="m-split">
+    <div class="m-stack">
+      <span class="m-label">Suggested next</span>
+      <h3 class="m-h3">Three low-effort additions</h3>
+      <p class="m-dim">None of these were broken &mdash; they&rsquo;re proposed refinements for wherever
+        the screen hasn&rsquo;t already caught up to them.</p>
+    </div>
+    <ul class="m-list">
+      <li><b>A &ldquo;Step 2 of X&rdquo; indicator</b> &mdash; so the screen states its place in the
+        sequence instead of feeling open-ended.</li>
+      <li><b>A &ldquo;Recommended&rdquo; badge</b> on one option, to give undecided users a default
+        rather than four blank choices.</li>
+      <li><b>Icon-based previews</b> in the placeholder boxes, hinting at the layout difference even
+        before real content exists.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── MICROCOPY: WELCOME + STEPS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Microcopy</span>
+    <h2 class="m-h2">Rewriting the words between install and first upload</h2>
+    <p>Wireframes fix structure; they don&rsquo;t fix a welcome screen that undersells the product. The
+      audit&rsquo;s second half was a line-by-line rewrite of the copy carrying a merchant through their
+      first session.</p>
+  </div>
+
+  <div class="m-split">
+    <div class="copy">
+      <span class="m-label">Welcome screen</span>
+      <p class="copy__h">&ldquo;Let Customers Shop While They Watch&rdquo;</p>
+      <p class="copy__s">&ldquo;Add a video, tag your products, and let shoppers buy without leaving the
+        screen.&rdquo;</p>
+      <span class="copy__cta">Create My First Shoppable Video</span>
+    </div>
+    <div class="m-stack">
+      <p class="m-dim">Generic SaaS onboarding leans on words like &ldquo;get started&rdquo; that could
+        belong to any product. This headline is visual and specific to what Reelify actually does &mdash;
+        it names the experience the merchant is switching on, not the app category.</p>
+    </div>
+  </div>
+
+  <div>
+    <p class="m-dim" style="margin-bottom:1em">Three onboarding steps, written to be skimmed in seconds:</p>
+    <div class="steps">
+      <div class="step"><span class="step__n">01</span><p>&#128249; Add your first video from your phone,
+        computer, or YouTube.</p></div>
+      <div class="step"><span class="step__n">02</span><p>&#127991;&#65039; Tag the products you want
+        customers to shop.</p></div>
+      <div class="step"><span class="step__n">03</span><p>&#128640; Publish to your store and turn
+        browsers into buyers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MICROCOPY: EMPTY + SUCCESS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-grid m-grid-2">
+    <div class="copy">
+      <span class="m-label">Empty state &mdash; no videos yet</span>
+      <p class="copy__h">&ldquo;Your store is waiting for its first shoppable video.&rdquo;</p>
+      <p class="copy__s">&ldquo;It takes less than 2 minutes to set up. Start now.&rdquo;</p>
+      <span class="copy__cta">Add My First Video</span>
+    </div>
+    <div class="copy">
+      <span class="m-label">Success &mdash; video published</span>
+      <p class="copy__h">&ldquo;Your Shoppable Video is Live &#127881;&rdquo;</p>
+      <p class="copy__s">&ldquo;Customers can now watch and shop. Track performance in your
+        dashboard.&rdquo;</p>
+      <span class="copy__cta">View in My Store</span>
+    </div>
+  </div>
+  <p class="m-measure m-dim">The empty state personifies the store and reassures on effort before asking
+    for anything. The success message celebrates the milestone, then hands the merchant straight to their
+    next action instead of leaving them idle on a static confirmation screen.</p>
+</section>
+
+<!-- ── MICROCOPY: RETENTION ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Retention</span>
+    <h2 class="m-h2">The uninstall flow answers the reason it was actually given</h2>
+    <p>Most cancellation flows show the same message regardless of why someone is leaving. This one
+      branches on the merchant&rsquo;s stated reason, so the response is relevant rather than generic.</p>
+  </div>
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head m-swap--wide"><span>If they say</span><span>Reelify responds</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">&ldquo;Hard to use&rdquo;</span><span class="in">&ldquo;Looks like setup was tricky. Want a 10-minute guided walkthrough?&rdquo;</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">&ldquo;Too expensive&rdquo;</span><span class="in">&ldquo;We can offer a smaller plan or extended trial. Want to see options?&rdquo;</span></div>
+    <div class="m-swap m-swap--wide"><span class="out">&ldquo;Using a different app&rdquo;</span><span class="in">&ldquo;Here&rsquo;s how we stack up, just in case you want to compare before leaving.&rdquo;</span></div>
+  </div>
+
+  <div class="m-grid m-grid-2">
+    <div class="m-stack">
+      <h3 class="m-h3">Dashboard microcopy</h3>
+      <ul class="m-list m-dim">
+        <li><b>Upload button</b> &mdash; &ldquo;+ Add Video to My Store&rdquo;</li>
+        <li><b>Analytics empty state</b> &mdash; &ldquo;No data yet. Your first video will light up this
+          dashboard.&rdquo;</li>
+        <li><b>Help link</b> &mdash; &ldquo;Need help? Chat with us. We reply fast.&rdquo;</li>
+      </ul>
+    </div>
+    <div class="m-stack">
+      <h3 class="m-h3">Why branch the copy at all</h3>
+      <p class="m-dim">Personalising the response to the stated reason for leaving makes it feel like
+        someone read the answer, not like a form was submitted into a void. That alone tends to move
+        people from &ldquo;leaving&rdquo; to &ldquo;willing to hear more.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPECTED IMPACT ── -->
+<section class="m-sec m-stack m-measure">
+  <span class="m-label">Expected impact</span>
+  <h2 class="m-h2">What this was projected to move, going in</h2>
+  <p class="m-dim">This audit was delivered as a report and a walkthrough, not a shipped release &mdash;
+    the figures below are the projected impact the recommendations were built against, not measured
+    results.</p>
+  <ul class="m-list">
+    <li>A clearer welcome screen raising activation rate</li>
+    <li>A more motivating onboarding flow producing more first-video uploads per install</li>
+    <li>Guided empty states reducing drop-off mid-journey</li>
+    <li>Context-aware retention copy reducing churn at the uninstall step</li>
+  </ul>
+</section>
+
+</main>
+
+<footer class="close">
+  <p class="m-hero close__f">Every word in the product should work as hard as the features do.</p>
+  <div class="sign">
+    <span><b>Muhammad Rayis</b></span><span>UX/UI Consultant &middot; Frogscape</span><span>Reelify &middot; Shopify app</span>
+  </div>
+</footer>
+
+</div>
