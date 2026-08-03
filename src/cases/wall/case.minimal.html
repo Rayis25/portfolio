@@ -14,173 +14,15 @@
 .hero .new{color:var(--accent)}
 .hero__lede{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:58ch}
 
-/* micro-visuals inside the flow wells */
-.wv{width:100%; max-width:290px; display:flex; flex-direction:column; gap:.7em}
-.wv__card{background:var(--bg); border:1px solid var(--line); border-radius:var(--r);
-  padding:.9em 1em; display:flex; flex-direction:column; gap:.55em}
-.wv__field{color:var(--muted); font-size:.9rem}
-.wv__chips{display:flex; flex-wrap:wrap; gap:.35em}
-.wv__chips span{border:1px solid var(--line); border-radius:var(--r-pill); padding:.24em .62em;
-  font-size:.72rem; color:var(--muted)}
-.wv__end{display:flex; flex-direction:column; align-items:center; gap:.7em; text-align:center}
-.wv__end hr{width:34px; height:1px; background:var(--line); border:0; margin:0}
-.wv__end span{font-size:.85rem; color:var(--muted)}
-.ob__photo-grad{background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
-.ob__heart{width:34px; height:34px; border-radius:50%; background:#E4ECFC;
-  display:flex; align-items:center; justify-content:center; margin-bottom:.15em}
-.ob__heart i{position:relative; width:11px; height:11px; transform:rotate(-45deg); background:var(--ob-blue)}
-.ob__heart i::before,.ob__heart i::after{content:''; position:absolute; width:11px; height:11px;
-  border-radius:50%; background:var(--ob-blue)}
-.ob__heart i::before{top:-5.5px; left:0}
-.ob__heart i::after{top:0; left:5.5px}
-.ob__bar{width:36px; height:3px; border-radius:2px; background:var(--ob-ink); opacity:.82;
-  margin-top:.5em}
+/* real screenshots, shown at phone or detail scale depending on context */
+.m-shot--phone{max-width:222px; margin:0 auto}
+.m-shot--tall{max-width:280px; margin:0 auto}
 
-.wv__store{display:flex; flex-direction:column; gap:.35em}
-.wv__store b{color:var(--ink); font-size:.92rem; font-weight:600}
-.wv__lbl{font:500 .64rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase;
-  color:var(--muted)}
-.wv__offer{font-size:.85rem; color:var(--text); line-height:1.45}
-
-/* cover collage — two flagship mockups shown poster-style under the hero */
+/* cover collage — two real screens shown poster-style under the hero */
 .cover{padding-bottom:0}
 .cover .m-well{gap:clamp(16px,3.4vw,40px); flex-wrap:wrap; padding:clamp(26px,5vw,54px) clamp(18px,3.4vw,36px)}
-.cover .ob-wrap{transition:none}
-.cover .ob-wrap:first-child{transform:rotate(-4deg)}
-.cover .ob-wrap:last-child{transform:rotate(3deg)}
-
-/* onboarding screen mockups — rebuilt in markup from the designs */
-.ob{--ob-bg:#FDF9F6; --ob-blue:#2F80ED; --ob-tint:#A8C8F0; --ob-ink:#0B0B0C;
-  width:100%; max-width:212px; aspect-ratio:9/18.5; background:var(--ob-bg);
-  border-radius:20px; border:1px solid var(--line); overflow:hidden;
-  display:flex; flex-direction:column; align-items:center; gap:.5em;
-  padding:1.5em 1.1em 1.2em; text-align:center; position:relative}
-.ob h4{font-size:.82rem; line-height:1.16; letter-spacing:-.028em; font-weight:800;
-  color:var(--ob-ink); text-wrap:balance}
-.ob p{font-size:.6rem; line-height:1.42; color:#4B4B50}
-.ob__btn{margin-top:auto; background:var(--ob-blue); color:#fff; border-radius:999px;
-  padding:.62em 1em; font-size:.66rem; font-weight:700; width:100%;
-  position:relative; z-index:1}
-.ob__alt{font-size:.55rem; color:#6C6C72; margin-top:.5em; position:relative; z-index:1}
-.ob__alt i{font-style:normal; color:#A8A8AE}
-.ob__tiles{display:flex; gap:.5em; justify-content:center; margin-bottom:.3em}
-.ob__tiles span{width:34px; height:40px; border-radius:8px}
-.ob__tiles span{background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
-.ob__tiles span:first-child{transform:rotate(-7deg)}
-.ob__tiles span:last-child{transform:rotate(7deg)}
-.ob__globe{position:absolute; left:50%; bottom:-58%; width:150%; aspect-ratio:1; z-index:0;
-  transform:translateX(-50%); border:1.5px solid var(--ob-ink); border-radius:50%; opacity:.85}
-.ob__globe::before,.ob__globe::after{content:''; position:absolute; inset:0;
-  border:1.5px solid var(--ob-ink); border-radius:50%}
-.ob__globe::before{transform:scaleX(.45)}
-.ob__globe::after{transform:scaleY(.45)}
-.ob__pin{width:20px; height:20px; border-radius:50% 50% 50% 8px; background:var(--ob-tint);
-  transform:rotate(-45deg); margin-bottom:.35em}
-.ob__blobs{display:flex; flex-wrap:wrap; gap:.4em; justify-content:center; margin-top:.5em}
-.ob__blobs span{width:44px; height:44px; background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
-.ob__blobs span:nth-child(1){border-radius:40% 60% 55% 45%}
-.ob__blobs span:nth-child(2){border-radius:60% 40% 45% 55%}
-.ob__blobs span:nth-child(3){border-radius:50% 50% 12% 50%}
-.ob__orbit{position:relative; width:78px; height:78px; margin:.4em 0 .6em}
-.ob__orbit i{position:absolute; border-radius:50%; background:var(--ob-tint)}
-.ob__orbit i:nth-child(1){inset:14px; background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
-.ob__orbit i:nth-child(2){width:15px; height:15px; top:-2px; right:-4px; background:var(--ob-blue)}
-.ob__orbit i:nth-child(3){width:13px; height:13px; bottom:12px; left:-8px; background:var(--ob-blue)}
-.ob__orbit i:nth-child(4){width:9px; height:9px; top:8px; left:-6px}
-.ob__orbit i:nth-child(5){width:8px; height:8px; bottom:-2px; right:6px; background:#D9E6E6}
-.ob-wrap{display:flex; justify-content:center}
-
-/* account + merchant screen mockups — rebuilt in markup from the designs */
-.mk{--mk-blue:#2F6FED; --mk-ink:#0E0E10; --mk-muted:#8A8A90; --mk-line:#E7E6E4;
-  --mk-fill:#F1F0EE; --mk-tint:#E4ECFC;
-  width:100%; max-width:250px; background:#FCFCFB; border-radius:20px;
-  border:1px solid var(--line); padding:1.15em 1em; display:flex; flex-direction:column;
-  gap:.75em; text-align:left; font-size:.6rem}
-.mk__top{display:flex; align-items:center; justify-content:space-between; gap:.5em}
-.mk__x{width:16px; height:16px; position:relative}
-.mk__x::before,.mk__x::after{content:''; position:absolute; top:50%; left:0; width:100%;
-  height:1.4px; background:var(--mk-ink)}
-.mk__x::before{transform:rotate(45deg)} .mk__x::after{transform:rotate(-45deg)}
-.mk__back{width:14px; height:14px; border-left:1.6px solid var(--mk-blue);
-  border-bottom:1.6px solid var(--mk-blue); transform:rotate(45deg); margin-left:2px}
-.mk__avatar{width:20px; height:20px; border-radius:50%; background:var(--mk-fill);
-  border:1px solid var(--mk-line)}
-.mk__ttl{font-size:.66rem; font-weight:700; color:var(--mk-ink)}
-.mk__badge{display:inline-flex; width:fit-content; background:var(--mk-tint); color:var(--mk-blue);
-  font-size:.5rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
-  padding:.28em .6em; border-radius:999px}
-.mk h4{font-size:.78rem; line-height:1.2; font-weight:800; color:var(--mk-ink); text-wrap:balance}
-.mk p{font-size:.56rem; line-height:1.45; color:var(--mk-muted)}
-.mk__grp{display:flex; flex-direction:column; gap:.3em}
-.mk__lbl{font-size:.5rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
-  color:#6B6A70}
-.mk__in{background:var(--mk-fill); border-radius:9px; padding:.55em .7em; color:#ABA9AE;
-  font-size:.56rem; display:flex; align-items:center; gap:.4em}
-.mk__row2{display:flex; gap:.4em}
-.mk__row2 .mk__in:first-child{flex:0 0 42px; justify-content:center; color:var(--mk-ink)}
-.mk__row2 .mk__in:last-child{flex:1}
-.mk__upload{border:1.4px dashed var(--mk-line); border-radius:11px; padding:1em .7em;
-  display:flex; flex-direction:column; align-items:center; gap:.4em; text-align:center}
-.mk__cloud{width:22px; height:22px; border-radius:50%; background:var(--mk-tint);
-  display:flex; align-items:center; justify-content:center}
-.mk__cloud::before{content:''; width:8px; height:6px; border:1.3px solid var(--mk-blue);
-  border-bottom:0; border-radius:5px 5px 0 0}
-.mk__upload b{font-size:.58rem; color:var(--mk-ink); font-weight:600}
-.mk__upload b i{font-style:normal; color:var(--mk-blue)}
-.mk__upload small{font-size:.5rem; color:var(--mk-muted)}
-.mk__toggle{display:flex; gap:.4em}
-.mk__seg{flex:1; border:1.4px solid var(--mk-line); border-radius:10px; padding:.55em .3em;
-  display:flex; flex-direction:column; align-items:center; gap:.3em; font-size:.52rem;
-  color:var(--mk-muted); position:relative}
-.mk__seg.on{border-color:var(--mk-blue); background:var(--mk-tint); color:var(--mk-blue);
-  font-weight:600}
-.mk__seg i{width:16px; height:16px; border-radius:50%; background:var(--mk-fill);
-  display:block}
-.mk__seg.on i{background:var(--mk-blue)}
-.mk__check{position:absolute; top:4px; right:4px; width:10px; height:10px; border-radius:50%;
-  background:var(--mk-blue)}
-.mk__check::after{content:''; position:absolute; left:2.5px; top:4px; width:4px; height:2px;
-  border-left:1.2px solid #fff; border-bottom:1.2px solid #fff; transform:rotate(-45deg)}
-.mk__map{border-radius:11px; overflow:hidden; border:1px solid var(--mk-line); background:#DCE6DC;
-  height:64px; position:relative}
-.mk__pin2{position:absolute; left:50%; top:50%; width:14px; height:14px; border-radius:50% 50% 50% 3px;
-  background:var(--mk-blue); transform:translate(-50%,-70%) rotate(-45deg)}
-.mk__cap{font-size:.48rem; color:var(--mk-muted); margin-top:.3em}
-.mk__choices{display:flex; flex-direction:column; gap:.32em}
-.mk__ch{display:flex; align-items:center; gap:.5em; border:1.4px solid var(--mk-line);
-  border-radius:9px; padding:.4em .55em; position:relative}
-.mk__ch.on{border-color:var(--mk-blue); background:var(--mk-tint)}
-.mk__ch i{width:16px; height:16px; border-radius:50%; background:var(--mk-fill); flex:none}
-.mk__ch.on i{background:#fff}
-.mk__ch span{font-size:.54rem; font-weight:600; color:var(--mk-ink)}
-.mk__foot{display:flex; align-items:center; justify-content:space-between; gap:.6em; margin-top:.15em}
-.mk__back2{font-size:.56rem; color:var(--mk-muted); font-weight:600}
-.mk__btn{background:var(--mk-blue); color:#fff; border-radius:999px; padding:.6em 1.1em;
-  font-size:.6rem; font-weight:700; text-align:center}
-.mk__btn--full{width:100%}
-.mk__tags{display:flex; flex-wrap:wrap; gap:.3em}
-.mk__tags span{border:1px solid var(--mk-line); border-radius:999px; padding:.25em .55em;
-  font-size:.5rem; color:var(--mk-muted)}
-.mk__ta{background:var(--mk-fill); border-radius:9px; padding:.55em .7em; color:#ABA9AE;
-  font-size:.55rem; min-height:2.6em}
-.mk__photo{border-radius:11px; background:linear-gradient(155deg,#EADFCF,#C9A876);
-  height:96px; position:relative}
-.mk__ov{position:absolute; top:.4em; right:.4em; display:flex; flex-direction:column;
-  align-items:flex-end; gap:.25em}
-.mk__ov span{background:rgba(20,18,14,.62); color:#fff; font-size:.46rem; font-weight:700;
-  letter-spacing:.04em; text-transform:uppercase; padding:.24em .5em; border-radius:999px}
-.mk__cat{font-size:.5rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
-  color:var(--mk-muted)}
-.mk__price{display:inline-flex; width:fit-content; background:var(--mk-tint); color:var(--mk-blue);
-  font-weight:700; font-size:.68rem; padding:.3em .6em; border-radius:8px}
-.mk__desc{background:var(--mk-fill); border-radius:10px; padding:.55em .65em}
-.mk__desc b{font-size:.54rem; color:var(--mk-ink)}
-.mk__spec{display:flex; justify-content:space-between; padding:.28em 0;
-  border-top:1px solid var(--mk-line); font-size:.54rem}
-.mk__spec:first-child{border-top:0}
-.mk__spec b{color:var(--mk-ink); font-weight:600}
-.mk__stock{display:flex; align-items:flex-start; gap:.4em}
-.mk__stock i{width:9px; height:9px; border-radius:3px; background:var(--mk-blue); margin-top:.2em; flex:none}
+.cover .m-shot:first-child{transform:rotate(-4deg)}
+.cover .m-shot:last-child{transform:rotate(3deg)}
 
 /* notification rows */
 .notif{border-top:1px solid var(--line)}
@@ -226,21 +68,8 @@
 
 <section class="m-sec cover">
   <div class="m-well">
-    <div class="ob-wrap"><div class="ob">
-      <div class="ob__tiles"><span></span><span></span></div>
-      <h4>Your Nearby World, Just a Tap Away</h4>
-      <p>Connect with people around you. Share, discover, and act in your area</p>
-      <span class="ob__btn">Start Connecting</span>
-      <div class="ob__globe" aria-hidden="true"></div>
-    </div></div>
-    <div class="ob-wrap"><div class="ob">
-      <div class="ob__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <h4>Post What Matters, See Only Nearby</h4>
-      <p>Share anything &mdash; sell, ask, or express. Your post reaches people near you instantly.</p>
-      <span class="ob__btn">Create your content</span>
-      <span class="ob__alt">Already have an account? <i>Sign In</i></span>
-      <span class="ob__bar" aria-hidden="true"></span>
-    </div></div>
+    <div class="m-shot"><img src="@IMG_ONBOARD1@" alt="Wall welcome screen: Your Nearby World, Just a Tap Away, with two photos of neighbours and a Start Connecting button." width="640" height="1387"></div>
+    <div class="m-shot"><img src="@IMG_ONBOARD3@" alt="Wall onboarding screen: Post What Matters, See Only Nearby, with a photo of a neighbour waving." width="393" height="852"></div>
   </div>
 </section>
 
@@ -369,38 +198,22 @@
 
   <div class="m-grid m-grid-3 m-grid-feat">
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
-        <div class="ob__tiles"><span></span><span></span></div>
-        <h4>Your Nearby World, Just a Tap Away</h4>
-        <p>Connect with people around you. Share, discover, and act in your area</p>
-        <span class="ob__btn">Start Connecting</span>
-        <div class="ob__globe" aria-hidden="true"></div>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_ONBOARD1@" alt="Welcome screen: Your Nearby World, Just a Tap Away." width="640" height="1387"></div></div>
       <p class="m-stmt">Screen one states the radius, not the feature list.</p>
       <span class="m-tag">Welcome</span>
     </div>
 
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
-        <div class="ob__heart" aria-hidden="true"><i></i></div>
-        <h4>A neighbourhood full of helpful people</h4>
-        <p>We make it easier for everyone to connect, support and grow together</p>
-        <div class="ob__blobs" aria-hidden="true"><span></span><span></span><span></span></div>
-        <span class="ob__btn">Continue</span>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_ONBOARD2@" alt="Mission screen: We Are On A Mission To Connect Neighbourhood, with three photos of neighbours." width="393" height="852"></div></div>
       <p class="m-stmt">Screen two shows neighbours, not an illustration of a product.</p>
       <span class="m-tag">Mission</span>
     </div>
 
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
-        <div class="ob__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        <h4>Post What Matters, See Only Nearby</h4>
-        <p>Share anything &mdash; sell, ask, or express. Your post reaches people near you instantly.</p>
-        <span class="ob__btn">Create your content</span>
-        <span class="ob__alt">Already have an account? <i>Sign In</i></span>
-        <span class="ob__bar" aria-hidden="true"></span>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_ONBOARD3@" alt="Onboarding screen: Post What Matters, See Only Nearby." width="393" height="852"></div></div>
       <p class="m-stmt">Screen three is the first and only ask.</p>
       <span class="m-tag">Post</span>
     </div>
@@ -441,28 +254,8 @@
         separate business sign-up path. Picking it doesn&rsquo;t change the form &mdash; it just
         decides what the app opens to next.</p>
     </div>
-    <div class="m-well m-well--tight">
-      <div class="ob-wrap"><div class="mk">
-        <div class="mk__top"><div class="mk__x"></div></div>
-        <h4>Let&rsquo;s Create Your Wall Account</h4>
-        <p>Join the curated ecosystem of local commerce.</p>
-        <div class="mk__grp"><span class="mk__lbl">What is your name?</span>
-          <div class="mk__in">Write your full name</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Set your username</span>
-          <div class="mk__in">@ What should we call you&hellip;</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Enter your phone number</span>
-          <div class="mk__row2"><div class="mk__in">+1</div><div class="mk__in">000-000-0000</div></div></div>
-        <div class="mk__grp"><span style="font-size:.62rem; font-weight:700; color:var(--mk-ink)">Why do you want to use this platform?</span>
-          <div class="mk__choices">
-            <div class="mk__ch on"><i></i><span>To Socialise</span><div class="mk__check"></div></div>
-            <div class="mk__ch"><i></i><span>Explore nearby offers</span></div>
-            <div class="mk__ch"><i></i><span>Discover local shops</span></div>
-            <div class="mk__ch"><i></i><span>To set up your store</span></div>
-          </div>
-        </div>
-        <div class="mk__foot"><span class="mk__back2">&larr; Back</span><span class="mk__btn">Continue &rarr;</span></div>
-      </div></div>
-    </div>
+    <div class="m-well m-well--tight"><div class="m-shot m-shot--tall">
+      <img src="@IMG_SIGNUP@" alt="Account creation screen: Let's Create Your Wall Account, with name, username and phone fields, and a list of reasons for using the platform including To Socialise and To set up your store." width="577" height="1417"></div></div>
   </div>
 </section>
 
@@ -478,72 +271,22 @@
 
   <div class="m-grid m-grid-3 m-grid-feat">
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
-        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Store Setup</span><div class="mk__avatar"></div></div>
-        <span class="mk__badge">Step 1 of 2</span>
-        <h4>Set Up Your Store In Just 60 Seconds</h4>
-        <p>Create a professional storefront that connects with customers instantly.</p>
-        <div class="mk__grp"><span class="mk__lbl">What is your store name?</span>
-          <div class="mk__in">e.g. Azure Boutique</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Store picture</span>
-          <div class="mk__upload"><div class="mk__cloud"></div><b>Drag &amp; drop or <i>Browse</i></b>
-            <small>Supports PNG, JPG (Max 10MB)</small></div></div>
-        <div class="mk__grp"><span class="mk__lbl">What do you sell?</span>
-          <div class="mk__in">Select a category</div></div>
-        <div class="mk__grp"><span class="mk__lbl">How should customers contact you?</span>
-          <div class="mk__toggle">
-            <div class="mk__seg"><i></i>Phone call</div>
-            <div class="mk__seg on"><i></i>WhatsApp<div class="mk__check"></div></div>
-          </div></div>
-        <div class="mk__grp"><span class="mk__lbl">Store location</span>
-          <div class="mk__map"><div class="mk__pin2"></div></div>
-          <span class="mk__cap">Tap the map to adjust precise location</span></div>
-        <div class="mk__btn mk__btn--full">Continue Setup &rarr;</div>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_STORESETUP@" alt="Store Setup screen: Set Up Your Store In Just 60 Seconds, with store name, photo upload, category, WhatsApp contact and a location map." width="402" height="1637"></div></div>
       <p class="m-stmt">Name, photo, category, contact method, location. Nothing else is asked.</p>
       <span class="m-tag">Store setup</span>
     </div>
 
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
-        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Add Product</span><div class="mk__check" style="position:static; background:var(--mk-blue)"></div></div>
-        <h4>Add Your First Product</h4>
-        <p>Create a beautiful listing for your storefront.</p>
-        <div class="mk__upload"><div class="mk__cloud"></div><b>Upload Product Images</b>
-          <small>Recommended: 1080&times;1080px</small></div>
-        <div class="mk__grp"><span class="mk__lbl">Product name</span>
-          <div class="mk__in">e.g., Artisan Leather Bag</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Category selection</span>
-          <div class="mk__in">Select a category</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Price</span>
-          <div class="mk__in">0.00</div></div>
-        <div class="mk__grp"><span class="mk__lbl">Description</span>
-          <div class="mk__ta">Tell the story behind your product&hellip;</div></div>
-        <div class="mk__tags"><span>New Arrival &times;</span><span>Limited Edition &times;</span><span>+ Add Tag</span></div>
-        <div class="mk__btn mk__btn--full">Add to Inventory</div>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_ADDPRODUCT@" alt="Add Product screen: photo upload, product name, category, price, description and tags." width="390" height="1380"></div></div>
       <p class="m-stmt">Listing an item is the same shape as posting: a photo, a price, a few words.</p>
       <span class="m-tag">Step 2 of 2</span>
     </div>
 
     <div class="m-feat">
-      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
-        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Product Preview</span><span style="color:var(--mk-muted)">&#8942;</span></div>
-        <div class="mk__photo"><div class="mk__ov"><span>New Arrival</span><span>Limited Edition</span></div></div>
-        <span class="mk__cat">Fashion &amp; Accessories</span>
-        <h4 style="margin-top:-.4em">Artisan Leather Bag</h4>
-        <span class="mk__price">4,500</span>
-        <div class="mk__desc"><b>Description</b>
-          <p style="margin-top:.3em">Handcrafted, premium leather with adjustable straps and multiple compartments.</p></div>
-        <div>
-          <div class="mk__spec"><span>Material</span><b>Genuine Leather</b></div>
-          <div class="mk__spec"><span>Colour</span><b>Tan Brown</b></div>
-          <div class="mk__spec"><span>Weight</span><b>1.2 kg</b></div>
-        </div>
-        <div class="mk__stock"><i></i><div><b style="font-size:.58rem; color:var(--mk-ink)">Ready for Listing</b>
-          <p style="margin:0">Location: Warehouse A &middot; updated 2 mins ago</p></div></div>
-        <div class="mk__btn mk__btn--full">Confirm &amp; Add</div>
-      </div></div></div>
+      <div class="m-well m-well--tight"><div class="m-shot m-shot--phone">
+        <img src="@IMG_PRODUCTPREVIEW@" alt="Product Preview screen showing an Artisan Leather Bag with price, description, specifications and stock status." width="430" height="1485"></div></div>
       <p class="m-stmt">Every listing previews the same way &mdash; no boosted layout, no promoted styling.</p>
       <span class="m-tag">Preview</span>
     </div>
@@ -559,50 +302,40 @@
 <section class="m-sec m-stack-lg">
   <div class="m-stack m-measure">
     <span class="m-label">Flows</span>
-    <h2 class="m-h2">Three surfaces, each designed to ask for less</h2>
+    <h2 class="m-h2">What the feed actually looks like, running</h2>
+    <p>Two real posts and two store offers, side by side in the same stream &mdash; a lost-and-found
+      note carries the same weight as a bakery&rsquo;s sourdough batch. Opening a post surfaces the
+      conversation underneath it.</p>
   </div>
 
-  <div class="m-grid m-grid-3 m-grid-feat">
-    <div class="m-feat">
-      <div class="m-well">
-        <div class="wv">
-          <div class="wv__card">
-            <span class="wv__field">Share something useful&hellip;</span>
-            <div class="wv__chips"><span>Lost &amp; found</span><span>Traffic</span><span>Tip</span></div>
-          </div>
-        </div>
-      </div>
-      <p class="m-stmt">Posting feels like texting a neighbour, not publishing to the internet.</p>
-      <span class="m-tag">Community feed</span>
-    </div>
+  <figure class="m-fig">
+    <div class="m-well"><div class="m-shot" style="max-width:300px; margin:0 auto">
+      <img src="@IMG_FEED@" alt="Wall community feed for the Indiranagar neighbourhood, showing a mix of resident posts and store offers with an Order via WhatsApp action." width="390" height="2110" loading="lazy"></div></div>
+    <figcaption class="m-cap"><b>The feed.</b> Chronological, geographically local, mixing questions,
+      sightings and local offers in one stream &mdash; nothing sorted by engagement.</figcaption>
+  </figure>
 
-    <div class="m-feat">
-      <div class="m-well">
-        <div class="wv">
-          <div class="wv__end">
-            <hr>
-            <span>That&rsquo;s everything nearby<br>right now.</span>
-            <hr>
-          </div>
-        </div>
-      </div>
-      <p class="m-stmt">The feed is chronological and finite. Reaching the end is the normal outcome.</p>
-      <span class="m-tag">Browsing</span>
+  <div class="m-split">
+    <div class="m-stack">
+      <h3 class="m-h3">Opening a post surfaces the conversation underneath it</h3>
+      <p>Likes, replies and a place to add one of your own. It&rsquo;s the one surface in the product
+        that reads closer to a conventional social feed than the rest of it &mdash; a named, threaded
+        comment section rather than the single quiet reaction the rest of the strategy leans on.</p>
     </div>
+    <div class="m-well m-well--tight"><div class="m-shot m-shot--tall">
+      <img src="@IMG_POSTDETAIL@" alt="Post detail screen showing a resident's question about morning yoga sessions, with two neighbourly replies and a reply field." width="398" height="892" loading="lazy"></div></div>
+  </div>
 
-    <div class="m-feat">
-      <div class="m-well">
-        <div class="wv">
-          <div class="wv__card wv__store">
-            <span class="wv__lbl">Local business</span>
-            <b>Corner Bakery &middot; 200m</b>
-            <span class="wv__offer">Available today &mdash; sourdough half price after 5pm.</span>
-          </div>
-        </div>
-      </div>
-      <p class="m-stmt">Store offers post exactly like neighbours do &mdash; same format, same 24 hours.</p>
-      <span class="m-tag">Local stores</span>
+  <div class="m-split">
+    <div class="m-stack">
+      <h3 class="m-h3">Store posts, same card as everyone else&rsquo;s</h3>
+      <p>Header, photo, a few words, and a way to respond &mdash; the same shape a resident&rsquo;s
+        post uses. A small &ldquo;Store Neighbor&rdquo; label is the only thing marking it as a shop,
+        and &ldquo;Order via WhatsApp&rdquo; replaces the reaction row rather than sitting alongside a
+        boosted layout.</p>
     </div>
+    <div class="m-well m-well--tight"><div class="m-shot" style="max-width:250px; margin:0 auto">
+      <img src="@IMG_STOREPOST@" alt="Store post from Star Bakery offering a weekend sourdough batch, with an Order via WhatsApp button." width="390" height="625"></div></div>
   </div>
 
   <div class="m-grid m-grid-2">
@@ -620,7 +353,7 @@
       <ul class="m-list m-dim">
         <li>No algorithmic sorting and no option to inflate the radius to feel busier</li>
         <li>No sidebar, related posts or recommendations on an opened post</li>
-        <li>One quiet reaction and a &ldquo;Useful&rdquo; flag &mdash; no comment threads that become stages</li>
+        <li>No public like counts or view numbers on the feed itself</li>
         <li>Store owners see only their own post views, never competitor data</li>
       </ul>
     </div>
