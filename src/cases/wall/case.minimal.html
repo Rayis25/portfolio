@@ -1,0 +1,374 @@
+<title>Wall — A social app designed not to manipulate you</title>
+<meta name="description" content="Case study: the product strategy for a hyper-local social app, built around the engagement patterns it refuses to ship.">
+<style>/*@FONTS@*/</style>
+<style>/*@THEME@*/</style>
+<style>
+/* ===== case-specific ===== */
+.top{display:flex; flex-direction:column; gap:.9em; padding:clamp(26px,4vw,46px) 0 clamp(38px,6vw,72px)}
+.top__back{display:inline-flex; align-items:center; gap:.5em; width:fit-content;
+  font-size:.98rem; color:var(--muted); font-weight:500}
+.top__back:hover{color:var(--ink); text-decoration:none}
+
+.hero{padding-bottom:clamp(30px,5vw,52px)}
+.hero h1{max-width:17ch}
+.hero .new{color:var(--accent)}
+.hero__lede{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:58ch}
+
+/* micro-visuals inside the flow wells */
+.wv{width:100%; max-width:290px; display:flex; flex-direction:column; gap:.7em}
+.wv__card{background:var(--bg); border:1px solid var(--line); border-radius:var(--r);
+  padding:.9em 1em; display:flex; flex-direction:column; gap:.55em}
+.wv__field{color:var(--muted); font-size:.9rem}
+.wv__chips{display:flex; flex-wrap:wrap; gap:.35em}
+.wv__chips span{border:1px solid var(--line); border-radius:var(--r-pill); padding:.24em .62em;
+  font-size:.72rem; color:var(--muted)}
+.wv__end{display:flex; flex-direction:column; align-items:center; gap:.7em; text-align:center}
+.wv__end hr{width:34px; height:1px; background:var(--line); border:0; margin:0}
+.wv__end span{font-size:.85rem; color:var(--muted)}
+.wv__store{display:flex; flex-direction:column; gap:.35em}
+.wv__store b{color:var(--ink); font-size:.92rem; font-weight:600}
+.wv__lbl{font:500 .64rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted)}
+.wv__offer{font-size:.85rem; color:var(--text); line-height:1.45}
+
+/* notification rows */
+.notif{border-top:1px solid var(--line)}
+.notif__r{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:1.4em;
+  padding:.92em .2em; border-bottom:1px solid var(--line-soft); align-items:baseline}
+.notif__r b{color:var(--ink); font-weight:600; font-size:.98rem}
+.notif__r span{color:var(--muted); font-size:.92rem; line-height:1.5}
+.notif__r--off b{color:var(--muted); font-weight:500}
+@media (max-width:760px){ .notif__r{grid-template-columns:minmax(0,1fr); gap:.25em} }
+
+/* sign-off */
+.close{border-top:1px solid var(--line); padding-top:clamp(2.2em,5vw,3.6em);
+  padding-bottom:clamp(48px,8vw,96px)}
+.close__f{max-width:20ch}
+.sign{display:flex; flex-wrap:wrap; gap:.6em 2.5em; margin-top:clamp(1.8em,4vw,2.8em);
+  font:500 var(--t-label)/1.6 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted)}
+.sign b{color:var(--ink); font-weight:600}
+</style>
+
+<a class="m-skip" href="#main">Skip to case study</a>
+
+<div class="m-wrap">
+
+<div class="top">
+  <a class="top__back" href="/">&larr; Back</a>
+  <div class="m-tags">
+    <span class="m-tag">Product Strategy</span>
+    <span class="m-tag">UX Strategy</span>
+    <span class="m-tag">Design Principles</span>
+    <span class="m-tag">Content Design</span>
+  </div>
+</div>
+
+<header class="hero">
+  <h1 class="m-hero">A social app built to be useful a few times a week &mdash;
+    <span class="new">not addictive every day</span>.</h1>
+  <p class="m-lede hero__lede">Wall is a hyper-local platform where neighbours share what&rsquo;s
+    actually happening on their street. I led the product strategy: the principles, the patterns we
+    refused to build, the flows, the language, and the metrics the team would and would not optimise
+    for.</p>
+</header>
+
+<main id="main">
+
+<!-- ── ABOUT ── -->
+<section class="m-sec m-split">
+  <div class="m-stack">
+    <span class="m-label">About</span>
+    <p class="m-stmt">Wall connects people inside one neighbourhood through useful, time-bound posts
+      and a local store layer. Posts live for 24 hours and disappear.</p>
+    <p>No archive, no scroll trap, no performance pressure. Two surfaces define it: a
+      <b>community feed</b> where neighbours share real-time information &mdash; lost pets, road
+      closures, parking changes, recommendations &mdash; and <b>local store listings</b>, where nearby
+      shop owners post time-limited offers in exactly the same format as everyone else.</p>
+  </div>
+  <div class="m-stack">
+    <span class="m-label">Details</span>
+    <dl class="m-meta">
+      <div><dt>Role</dt><dd>Product &amp; UX Strategy</dd></div>
+      <div><dt>Deliverable</dt><dd>UX strategy, v1.0</dd></div>
+      <div><dt>Platform</dt><dd>Mobile</dd></div>
+      <div><dt>Category</dt><dd>Hyper-local social</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ── VISION ── -->
+<section class="m-sec">
+  <div class="m-quote m-measure">
+    <p>It should feel like bumping into a helpful neighbour &mdash; not like opening another social
+      media app.</p>
+    <cite>Product vision</cite>
+  </div>
+</section>
+
+<!-- ── STRATEGY ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Strategy</span>
+    <h2 class="m-h2">One principle underneath every decision: social familiarity</h2>
+    <p>Social familiarity is the feeling of a natural, low-stakes neighbourhood interaction. Not a
+      broadcast. Not a performance. Not a competition for attention. Everything below is downstream of
+      that one idea, and three commitments carry it.</p>
+  </div>
+
+  <div class="m-grid m-grid-3">
+    <div class="m-stack"><span class="m-tag">01</span>
+      <h3 class="m-h3">Calm by default</h3>
+      <p class="m-dim">The experience should never feel urgent or algorithmically manipulated. People
+        open the app when it is useful to them &mdash; not because the product trained them to check
+        compulsively.</p></div>
+    <div class="m-stack"><span class="m-tag">02</span>
+      <h3 class="m-h3">Authenticity over polish</h3>
+      <p class="m-dim">Posts don&rsquo;t need to look good. A quick photo of a broken streetlight beats
+        a beautifully designed announcement. The UI has to feel comfortable for unproduced sharing.</p></div>
+    <div class="m-stack"><span class="m-tag">03</span>
+      <h3 class="m-h3">Utility drives engagement</h3>
+      <p class="m-dim">People return because the app was genuinely useful &mdash; not because of a
+        badge, a streak or a like count. Retention is earned through real-world relevance.</p></div>
+  </div>
+</section>
+
+<!-- ── PRINCIPLES ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Principles</span>
+    <h2 class="m-h2">Six rules the interface has to obey</h2>
+    <p>Principles are only useful if they can settle an argument. Each of these is written so a
+      designer can hold a screen against it and get a yes or a no.</p>
+  </div>
+
+  <div class="m-grid m-grid-3">
+    <div class="m-stack"><h3 class="m-h3">Neighbourly tone</h3>
+      <p class="m-dim">Language, prompts and empty states speak like a calm neighbour, not a startup.
+        No exclamation marks pushing you to post.</p></div>
+    <div class="m-stack"><h3 class="m-h3">No performance pressure</h3>
+      <p class="m-dim">No public like counts, no follower numbers, no leaderboards. Posts are seen
+        because they are useful, not because they went viral.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Ephemeral by design</h3>
+      <p class="m-dim">The 24-hour window is a feature, not a limitation. It removes the anxiety of
+        permanent posting and keeps the feed relevant to right now.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Graceful emptiness</h3>
+      <p class="m-dim">An empty feed is a quiet street, not a failure state. Zero-content states are
+        handled with calm rather than aggressive nudges.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Low-commitment participation</h3>
+      <p class="m-dim">Reacting, saving or sharing is one quiet tap. The bar to take part should feel
+        lower than social media, not higher.</p></div>
+    <div class="m-stack"><h3 class="m-h3">Stores are neighbours too</h3>
+      <p class="m-dim">Store listings are part of the community, not advertising. Owners are neighbours
+        with useful information, and the UI reflects that equality.</p></div>
+  </div>
+</section>
+
+<!-- ── ANTI-PATTERNS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Anti-patterns</span>
+    <h2 class="m-h2">The strategy is mostly a list of things we refused to build</h2>
+    <p>Most of the engagement mechanics in social products are well understood and easy to copy. The
+      harder work was writing down which ones we would not ship, and what we would do instead &mdash;
+      so the decision was already made before anyone felt pressure to hit a number.</p>
+  </div>
+
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head m-swap--wide"><span>Industry pattern &mdash; not built</span><span>What we do instead</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Push notifications baiting users back with vague urgency</span><span class="in">Notifications only for direct relevance &mdash; a reply to your post, or a saved store offer. Silent by default.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Streak mechanics and posting reminders</span><span class="in">No streaks, no cadence pressure. The 24-hour window is about freshness, not urgency. Posts expire quietly.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Public engagement metrics on every post</span><span class="in">Engagement is private or hidden. Authors may see view counts privately; nothing is shown to others.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Infinite scroll and algorithmic ranking</span><span class="in">The feed is chronological, geographically local and finite. When you reach the end, you reach the end.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Onboarding that guilts you into completing a profile</span><span class="in">Name and neighbourhood. That&rsquo;s enough. Everything else is optional and non-blocking.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Empty states that nudge you to create content</span><span class="in">&ldquo;Quiet on the street right now&rdquo; &mdash; never &ldquo;Be the first to post!&rdquo;</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Promoted placement and pay-to-boost listings</span><span class="in">Every store listing uses the same format regardless of how active or paying the owner is.</span></div>
+  </div>
+</section>
+
+<!-- ── FLOWS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Flows</span>
+    <h2 class="m-h2">Three surfaces, each designed to ask for less</h2>
+  </div>
+
+  <div class="m-grid m-grid-3 m-grid-feat">
+    <div class="m-feat">
+      <div class="m-well">
+        <div class="wv">
+          <div class="wv__card">
+            <span class="wv__field">Share something useful&hellip;</span>
+            <div class="wv__chips"><span>Lost &amp; found</span><span>Traffic</span><span>Tip</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="m-stmt">Posting feels like texting a neighbour, not publishing to the internet.</p>
+      <span class="m-tag">Community feed</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well">
+        <div class="wv">
+          <div class="wv__end">
+            <hr>
+            <span>That&rsquo;s everything nearby<br>right now.</span>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <p class="m-stmt">The feed is chronological and finite. Reaching the end is the normal outcome.</p>
+      <span class="m-tag">Browsing</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well">
+        <div class="wv">
+          <div class="wv__card wv__store">
+            <span class="wv__lbl">Local business</span>
+            <b>Corner Bakery &middot; 200m</b>
+            <span class="wv__offer">Available today &mdash; sourdough half price after 5pm.</span>
+          </div>
+        </div>
+      </div>
+      <p class="m-stmt">Store offers post exactly like neighbours do &mdash; same format, same 24 hours.</p>
+      <span class="m-tag">Local stores</span>
+    </div>
+  </div>
+
+  <div class="m-grid m-grid-2">
+    <div class="m-stack">
+      <h3 class="m-h3">What the composer deliberately leaves out</h3>
+      <ul class="m-list m-dim">
+        <li>No floating &ldquo;Create&rdquo; button demanding attention &mdash; just a quiet inline field</li>
+        <li>Media is optional and never prompted; attach a photo only if it helps</li>
+        <li>Category tags exist but are never required</li>
+        <li>Confirmation is a small toast, not a celebration animation</li>
+      </ul>
+    </div>
+    <div class="m-stack">
+      <h3 class="m-h3">What browsing deliberately leaves out</h3>
+      <ul class="m-list m-dim">
+        <li>No algorithmic sorting and no option to inflate the radius to feel busier</li>
+        <li>No sidebar, related posts or recommendations on an opened post</li>
+        <li>One quiet reaction and a &ldquo;Useful&rdquo; flag &mdash; no comment threads that become stages</li>
+        <li>Store owners see only their own post views, never competitor data</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOTIFICATIONS ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Notifications</span>
+    <h2 class="m-h2">Only send it if the user would thank you for it</h2>
+    <p>Notifications are the most common way social products build unhealthy loops, so the policy is
+      written as a closed list. Anything not on it does not get to send.</p>
+  </div>
+  <div class="notif">
+    <div class="notif__r"><b>Reply to my post</b><span>Delivered once, no re-ping if unread. Quiet push, no badge count.</span></div>
+    <div class="notif__r"><b>Saved store offer expiring</b><span>One gentle reminder two hours before expiry, and only if opted in for that store.</span></div>
+    <div class="notif__r"><b>Weekly neighbourhood digest</b><span>Optional, off by default. Plain text, no images, no engagement bait.</span></div>
+    <div class="notif__r notif__r--off"><b>New post in feed</b><span>Never. People open the app when they choose to.</span></div>
+    <div class="notif__r notif__r--off"><b>Streak or posting reminder</b><span>Does not exist in this product.</span></div>
+    <div class="notif__r notif__r--off"><b>&ldquo;People near you are posting&rdquo;</b><span>Does not exist in this product.</span></div>
+  </div>
+</section>
+
+<!-- ── LANGUAGE ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Language</span>
+    <h2 class="m-h2">Copy is where a calm product usually breaks</h2>
+    <p>A product can hold every structural principle and still sound like a growth team wrote it. So
+      the strategy specifies the sentences, not just the rules.</p>
+  </div>
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head m-swap--wide"><span>Don&rsquo;t write</span><span>Write instead</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Your community is waiting for you!</span><span class="in">See what&rsquo;s happening nearby.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Be the first to post today!</span><span class="in">Nothing new right now &mdash; check back later.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">You&rsquo;re on a 5-day streak!</span><span class="in">No streak UI exists at all.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Share with your neighbours!</span><span class="in">Post if it&rsquo;s useful.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">Boost your post to reach more people</span><span class="in">Not a feature in this product.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">You have 3 unread notifications</span><span class="in">A quiet badge, with no count displayed.</span></div>
+    <div class="m-swap m-swap--wide"><span class="out out--struck">LIMITED TIME OFFER &mdash; DON&rsquo;T MISS OUT!</span><span class="in">Available today &mdash; [offer description].</span></div>
+  </div>
+</section>
+
+<!-- ── MEASUREMENT ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Measurement</span>
+    <h2 class="m-h2">Choosing metrics that don&rsquo;t reward manipulation</h2>
+    <p>Time-in-app, DAU and post volume all reward the exact patterns the product refuses to build. If
+      those stayed on the dashboard, they would eventually win the argument. So the strategy names
+      both lists.</p>
+  </div>
+  <div class="m-grid m-grid-2">
+    <div class="m-stack m-col-pos">
+      <span class="m-label">Measured</span>
+      <ul class="m-list">
+        <li><b>Useful interaction rate</b> &mdash; share of posts receiving at least one &ldquo;Useful&rdquo; reaction</li>
+        <li><b>Post relevance</b> &mdash; posts from the user&rsquo;s exact neighbourhood versus out of area</li>
+        <li><b>Voluntary return rate</b> &mdash; opens that happen without a push notification</li>
+        <li><b>Store offer redemption</b> &mdash; people who visit a store after seeing its post</li>
+        <li><b>Session completion</b> &mdash; opening, reaching the natural end of the feed, and closing</li>
+      </ul>
+    </div>
+    <div class="m-stack m-col-neg">
+      <span class="m-label">Deliberately not optimised</span>
+      <ul class="m-list">
+        <li><b>Session length</b> &mdash; longer is not better</li>
+        <li><b>Notification click-through</b> &mdash; more clicks means more manipulation</li>
+        <li><b>Posts per user</b> &mdash; we do not want pressure to post more</li>
+        <li><b>Daily active users</b> as a vanity number, unqualified by usefulness</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHECKLIST ── -->
+<section class="m-sec m-split">
+  <div class="m-stack">
+    <span class="m-label">Governance</span>
+    <h2 class="m-h2">A checklist so the strategy survives contact with a roadmap</h2>
+    <p>Strategy documents get filed and forgotten. This one ends in eight questions that run before
+      anything ships, because the pressure to add a streak arrives long after the principles are
+      written.</p>
+    <p class="m-em">For every decision, ask: would a helpful neighbour do this? If the answer is no,
+      redesign.</p>
+  </div>
+  <ul class="m-check">
+    <li>Does this create urgency that doesn&rsquo;t exist in real life?</li>
+    <li>Does this surface a public metric that could become a performance stage?</li>
+    <li>Does this notification serve the user, or serve our retention numbers?</li>
+    <li>Could someone feel embarrassed, pressured or judged by this interaction?</li>
+    <li>Does this push people toward more consumption than is useful?</li>
+    <li>Does this treat store owners unfairly against community members?</li>
+    <li>Does the empty state make the product feel broken or guilt-inducing?</li>
+    <li>Is any default setting tuned for our metrics rather than user comfort?</li>
+  </ul>
+</section>
+
+<!-- ── SUMMARY ── -->
+<section class="m-sec m-stack m-measure">
+  <span class="m-label">Summary</span>
+  <h2 class="m-h2">A utility with social warmth &mdash; not a social network with a utility layer</h2>
+  <p>Wall earns its place on a phone by being genuinely useful a few times a week. It succeeds when
+    someone opens it, finds something relevant in two minutes, and closes it satisfied.</p>
+  <p>The experience should feel the way a good neighbourhood feels: low drama, high trust, occasional
+    helpfulness, no pressure. People share what&rsquo;s useful because it helps their neighbours &mdash;
+    not for likes, not for reach, not for a streak.</p>
+</section>
+
+</main>
+
+<footer class="close">
+  <p class="m-hero close__f">The app respects your attention. It will not beg for your time.</p>
+  <div class="sign">
+    <span><b>Muhammad Rayis</b></span><span>Product &amp; UX Strategy</span><span>Wall &middot; Hyper-local social</span>
+  </div>
+</footer>
+
+</div>

@@ -1,4 +1,5 @@
 <title>Draftroom — Solving project management for creative teams</title>
+<meta name="description" content="Case study: rewriting a B2B work-management product around how creative teams actually talk about their work.">
 <style>/*@FONTS@*/</style>
 <style>/*@THEME@*/</style>
 <style>
@@ -14,23 +15,6 @@
   text-decoration-color:var(--muted); text-decoration-thickness:1.5px}
 .hero .new{color:var(--accent)}
 .hero__lede{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:56ch}
-
-/* vocabulary */
-.vocab{border-top:1px solid var(--line)}
-.vrow{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,1.25fr);
-  gap:1.4em; padding:.92em .2em; border-bottom:1px solid var(--line-soft); align-items:baseline}
-.vhead{border-bottom:1px solid var(--line)}
-.vhead span{font:500 var(--t-label)/1.5 var(--mono); letter-spacing:.13em;
-  text-transform:uppercase; color:var(--muted)}
-.vrow .old{color:var(--muted); text-decoration:line-through;
-  text-decoration-color:var(--muted); text-decoration-thickness:1.5px; font-size:.98rem}
-.vrow .new{color:var(--ink); font-weight:600; font-size:.99rem}
-.vrow .why{color:var(--muted); font-size:.92rem; line-height:1.5}
-@media (max-width:760px){
-  .vrow{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.3em 1.2em}
-  .vhead span:nth-child(3){display:none}
-  .vrow .why{grid-column:1 / -1; margin-top:.3em}
-}
 
 /* before / after */
 .swap{display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(1em,2.5vw,2.2em);
@@ -80,7 +64,7 @@
 <div class="m-wrap">
 
 <div class="top">
-  <a class="top__back" href="#main">&larr; Back</a>
+  <a class="top__back" href="/">&larr; Back</a>
   <div class="m-tags">
     <span class="m-tag">UX Research</span>
     <span class="m-tag">UI Design</span>
@@ -262,20 +246,20 @@
       creative teams had to translate before they could use it.</figcaption>
   </figure>
 
-  <div class="vocab">
-    <div class="vrow vhead"><span>Product language</span><span>Creative language</span><span>Why it matters</span></div>
-    <div class="vrow"><span class="old">Task</span><span class="new">Creative task / Deliverable</span><span class="why">Feels like actual work instead of a checklist item.</span></div>
-    <div class="vrow"><span class="old">Project</span><span class="new">Campaign / Client work</span><span class="why">Matches how agencies already organise their work.</span></div>
-    <div class="vrow"><span class="old">Board</span><span class="new">Workspace</span><span class="why">A more familiar and far less technical container.</span></div>
-    <div class="vrow"><span class="old">To Do</span><span class="new">Planned</span><span class="why">Sounds intentional rather than rigid.</span></div>
-    <div class="vrow"><span class="old">In Progress</span><span class="new">Working on</span><span class="why">Reflects how creatives actually describe ongoing work.</span></div>
-    <div class="vrow"><span class="old">Review</span><span class="new">Feedback</span><span class="why">Mirrors the agency review process, not a code review.</span></div>
-    <div class="vrow"><span class="old">Done</span><span class="new">Delivered</span><span class="why">Represents the real outcome &mdash; something reached the client.</span></div>
-    <div class="vrow"><span class="old">Assignee</span><span class="new">Owner</span><span class="why">The word agencies already use for accountability.</span></div>
-    <div class="vrow"><span class="old">Due date</span><span class="new">Delivery date</span><span class="why">Connects the date directly to a client expectation.</span></div>
-    <div class="vrow"><span class="old">Comment</span><span class="new">Feedback</span><span class="why">Frames the exchange as collaboration, not discussion.</span></div>
-    <div class="vrow"><span class="old">Attachment</span><span class="new">Design files</span><span class="why">Describes what is actually being handed over.</span></div>
-    <div class="vrow"><span class="old">Archive</span><span class="new">Completed work</span><span class="why">Says plainly what happens to finished projects.</span></div>
+  <div class="m-swaps">
+    <div class="m-swap m-swap--head"><span>Product language</span><span>Creative language</span><span>Why it matters</span></div>
+    <div class="m-swap"><span class="out out--struck">Task</span><span class="in">Creative task / Deliverable</span><span class="note">Feels like actual work instead of a checklist item.</span></div>
+    <div class="m-swap"><span class="out out--struck">Project</span><span class="in">Campaign / Client work</span><span class="note">Matches how agencies already organise their work.</span></div>
+    <div class="m-swap"><span class="out out--struck">Board</span><span class="in">Workspace</span><span class="note">A more familiar and far less technical container.</span></div>
+    <div class="m-swap"><span class="out out--struck">To Do</span><span class="in">Planned</span><span class="note">Sounds intentional rather than rigid.</span></div>
+    <div class="m-swap"><span class="out out--struck">In Progress</span><span class="in">Working on</span><span class="note">Reflects how creatives actually describe ongoing work.</span></div>
+    <div class="m-swap"><span class="out out--struck">Review</span><span class="in">Feedback</span><span class="note">Mirrors the agency review process, not a code review.</span></div>
+    <div class="m-swap"><span class="out out--struck">Done</span><span class="in">Delivered</span><span class="note">Represents the real outcome &mdash; something reached the client.</span></div>
+    <div class="m-swap"><span class="out out--struck">Assignee</span><span class="in">Owner</span><span class="note">The word agencies already use for accountability.</span></div>
+    <div class="m-swap"><span class="out out--struck">Due date</span><span class="in">Delivery date</span><span class="note">Connects the date directly to a client expectation.</span></div>
+    <div class="m-swap"><span class="out out--struck">Comment</span><span class="in">Feedback</span><span class="note">Frames the exchange as collaboration, not discussion.</span></div>
+    <div class="m-swap"><span class="out out--struck">Attachment</span><span class="in">Design files</span><span class="note">Describes what is actually being handed over.</span></div>
+    <div class="m-swap"><span class="out out--struck">Archive</span><span class="in">Completed work</span><span class="note">Says plainly what happens to finished projects.</span></div>
   </div>
 
   <div class="m-split">

@@ -174,3 +174,40 @@ b,strong{font-weight:600; color:var(--ink)}
 .m-stat p{font-size:.94rem; line-height:1.55; color:var(--muted)}
 
 .m-rule{height:1px; background:var(--line); border:0; margin:0}
+
+/* ---- swap list --------------------------------------------- */
+/* A rejected thing on the left, what replaced it on the right, and why.
+   Used for vocabulary rewrites, anti-patterns and copy guidelines. */
+.m-swaps{border-top:1px solid var(--line)}
+.m-swap{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,1.25fr);
+  gap:1.4em; padding:.92em .2em; border-bottom:1px solid var(--line-soft); align-items:baseline}
+.m-swap--head{border-bottom:1px solid var(--line)}
+.m-swap--head span{font:500 var(--t-label)/1.5 var(--mono); letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted)}
+.m-swap--wide{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.m-swap .out{color:var(--muted); font-size:.98rem}
+.m-swap .out--struck{text-decoration:line-through; text-decoration-color:var(--muted);
+  text-decoration-thickness:1.5px}
+.m-swap .in{color:var(--ink); font-weight:600; font-size:.99rem}
+.m-swap .note{color:var(--muted); font-size:.92rem; line-height:1.5}
+@media (max-width:760px){
+  .m-swap{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.3em 1.2em}
+  .m-swap--wide{grid-template-columns:minmax(0,1fr)}
+  .m-swap--head span:nth-child(3){display:none}
+  .m-swap .note{grid-column:1 / -1; margin-top:.3em}
+}
+
+/* ---- checklist --------------------------------------------- */
+.m-check li{position:relative; padding-left:2em; margin-top:.85em; color:var(--text)}
+.m-check li:first-child{margin-top:0}
+.m-check li::before{content:''; position:absolute; left:0; top:.42em; width:1.05em; height:1.05em;
+  border:1.5px solid var(--line); border-radius:var(--r-sm)}
+.m-check li::after{content:''; position:absolute; left:.34em; top:.66em; width:.34em; height:.62em;
+  border-right:1.5px solid var(--accent); border-bottom:1.5px solid var(--accent);
+  transform:rotate(42deg)}
+
+/* ---- do / don't columns ------------------------------------ */
+.m-col-neg .m-label{color:var(--neg)}
+.m-col-pos .m-label{color:var(--pos)}
+.m-col-neg li::before{background:var(--neg)}
+.m-col-pos li::before{background:var(--pos)}

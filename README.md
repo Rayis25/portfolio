@@ -2,9 +2,11 @@
 
 Case studies by **Muhammad Rayis**, Lead UX Designer.
 
-| Case study | Live file | Source |
+| Page | Live file | Source |
 | --- | --- | --- |
-| Draftroom — solving project management for creative teams | [`index.html`](index.html) | [`src/cases/draftroom/`](src/cases/draftroom/) |
+| Index | [`index.html`](index.html) | [`src/index.minimal.html`](src/index.minimal.html) |
+| Draftroom — solving project management for creative teams | [`draftroom/index.html`](draftroom/index.html) | [`src/cases/draftroom/`](src/cases/draftroom/) |
+| Wall — product strategy for a hyper-local social app | [`wall/index.html`](wall/index.html) | [`src/cases/wall/`](src/cases/wall/) |
 
 Two themes are maintained. `minimal` is live; `marked` is kept buildable so the
 directions can be compared rather than remembered.
@@ -25,7 +27,11 @@ src/
       case.minimal.html   markup + case CSS for the minimal theme
       case.marked.html    the same case written against the marked theme
       assets/             screenshots, cropped and recompressed for the web
-  build.py           inlines theme, fonts and images into standalone pages
+    wall/
+      case.minimal.html   strategy case study; no screenshots, so its visuals
+                          are built in markup
+  index.minimal.html      the portfolio index
+  build.py                inlines theme, fonts and images into standalone pages
 ```
 
 A template is named `case.<theme>.html` and is written against that theme's
@@ -38,25 +44,34 @@ Build after editing a template, the theme, or an asset:
 python3 src/build.py
 ```
 
-It writes, for every case under `src/cases/` and every theme it has a template
-for:
+It writes:
 
-- **`case-studies/<case>/<theme>.html`** — the page without
-  `<!doctype>`/`<html>`/`<head>`/`<body>`, for hosts that supply their own
-  document shell. These paths are stable; published artifacts track them.
-- **`index.html`** (repo root) — a complete document, built from
-  `PRIMARY_CASE` in `PRIMARY_THEME` (both set at the top of `build.py`).
+- **`index.html`** (repo root) — the portfolio index, from
+  `src/index.<theme>.html`.
+- **`<case>/index.html`** — each case study in `PRIMARY_THEME`, so it is served
+  at a clean `/<case>` URL.
+- **`case-studies/<case>/<theme>.html`** — a body-only fragment of every case in
+  every theme, without `<!doctype>`/`<html>`/`<head>`/`<body>`, for hosts that
+  supply their own document shell. These paths are stable; published artifacts
+  track them.
+
+Each template carries its own `<meta name="description">` directly after its
+`<title>`; the build hoists it into `<head>` rather than guessing one.
 
 Both are committed, so a case study is viewable straight from the repo without
 running anything.
 
 ### Adding a case study
 
-Create `src/cases/<name>/case.<theme>.html` with an `assets/` folder beside it,
-build with that theme's prefixed classes (`m-` for minimal, `t-` for marked),
-and reference images as `@IMG_FOO@` — which resolves to `assets/img_foo.*`. Run
-the build. Nothing else needs changing unless the new case should become
-`PRIMARY_CASE`.
+Create `src/cases/<name>/case.<theme>.html`, build with that theme's prefixed
+classes (`m-` for minimal, `t-` for marked), and run the build — the case is
+discovered automatically and published at `/<name>`. Add an `assets/` folder
+beside the template if it has images and reference them as `@IMG_FOO@`, which
+resolves to `assets/img_foo.*`; a case with no images needs no assets folder.
+Then add a card for it in `src/index.minimal.html`.
+
+Every case must have a template for `PRIMARY_THEME` — the build refuses
+otherwise, since the case would have no page at its own URL.
 
 ## Deployment
 

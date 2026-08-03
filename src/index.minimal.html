@@ -1,0 +1,91 @@
+<title>Muhammad Rayis — Product & UX Designer</title>
+<meta name="description" content="Product and UX design case studies by Muhammad Rayis.">
+<style>/*@FONTS@*/</style>
+<style>/*@THEME@*/</style>
+<style>
+/* ===== index page ===== */
+.intro{padding:clamp(48px,9vw,110px) 0 clamp(44px,7vw,84px)}
+.intro h1{max-width:17ch}
+.intro p{margin-top:clamp(1.2em,2.4vw,1.8em); max-width:54ch}
+
+.work{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(2em,4vw,3.4em); margin-bottom:clamp(64px,10vw,140px)}
+.card{display:flex; flex-direction:column; gap:1.1em; color:inherit; text-decoration:none}
+.card:hover{text-decoration:none}
+.card__w{min-height:clamp(180px,22vw,264px); text-align:center;
+  transition:background-color .18s ease}
+.card:hover .card__w{background:var(--well-2)}
+.card__q{font-size:clamp(1.1rem,2vw,1.5rem); line-height:1.3; letter-spacing:-.022em;
+  font-weight:600; color:var(--ink); max-width:16ch}
+.card__q em{font-style:normal; color:var(--accent)}
+.card h2{font-size:1.32rem; letter-spacing:-.022em}
+.card__d{color:var(--muted); font-size:.97rem; line-height:1.55}
+.card__go{font:500 var(--t-label)/1 var(--mono); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); margin-top:auto; display:inline-flex; gap:.5em; align-items:center}
+.card:hover .card__go{color:var(--accent)}
+@supports (grid-template-rows:subgrid){
+  .work{grid-template-rows:auto auto auto auto auto}
+  .card{display:grid; grid-row:span 5; grid-template-rows:subgrid; gap:1.1em}
+  .card__go{margin-top:0; align-self:start}
+}
+
+.foot{border-top:1px solid var(--line); padding:clamp(2em,4vw,3em) 0 clamp(48px,8vw,90px);
+  display:flex; flex-wrap:wrap; gap:.6em 2.5em;
+  font:500 var(--t-label)/1.6 var(--mono); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted)}
+.foot b{color:var(--ink); font-weight:600}
+</style>
+
+<a class="m-skip" href="#work">Skip to work</a>
+
+<div class="m-wrap">
+
+<header class="intro">
+  <h1 class="m-hero">Product and UX design for teams whose software
+    <span style="color:var(--accent)">gets in their way</span>.</h1>
+  <p class="m-lede">I&rsquo;m Muhammad Rayis. I work on the parts of a product that decide whether
+    people actually adopt it &mdash; the language it uses, the pace it sets, and the patterns it
+    refuses to copy from everyone else.</p>
+</header>
+
+<main id="work">
+  <div class="work">
+
+    <a class="card" href="/draftroom">
+      <div class="m-well card__w">
+        <span class="card__q">Five fragmented surfaces, <em>consolidated into one</em></span>
+      </div>
+      <h2>Draftroom</h2>
+      <p class="card__d">A B2B work-management product for creative agencies was built, shipped and
+        ignored. Rewriting its vocabulary and its pace is what got it adopted.</p>
+      <div class="m-tags">
+        <span class="m-tag">UX Research</span><span class="m-tag">UI Design</span>
+        <span class="m-tag">Usability Testing</span>
+      </div>
+      <span class="card__go">Read case study &rarr;</span>
+    </a>
+
+    <a class="card" href="/wall">
+      <div class="m-well card__w">
+        <span class="card__q">No streaks, no like counts, <em>and a feed that ends</em></span>
+      </div>
+      <h2>Wall</h2>
+      <p class="card__d">A hyper-local social app for neighbours. The product strategy is mostly a
+        list of engagement patterns we refused to build, and what we did instead.</p>
+      <div class="m-tags">
+        <span class="m-tag">Product Strategy</span><span class="m-tag">UX Strategy</span>
+        <span class="m-tag">Content Design</span>
+      </div>
+      <span class="card__go">Read case study &rarr;</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <span><b>Muhammad Rayis</b></span>
+  <span>Product &amp; UX Design</span>
+  <span><a href="mailto:designer.rayis@gmail.com">designer.rayis@gmail.com</a></span>
+</footer>
+
+</div>
