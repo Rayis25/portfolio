@@ -31,6 +31,46 @@
   color:var(--muted)}
 .wv__offer{font-size:.85rem; color:var(--text); line-height:1.45}
 
+/* onboarding screen mockups — rebuilt in markup from the designs */
+.ob{--ob-bg:#FDF9F6; --ob-blue:#2F80ED; --ob-tint:#A8C8F0; --ob-ink:#0B0B0C;
+  width:100%; max-width:212px; aspect-ratio:9/18.5; background:var(--ob-bg);
+  border-radius:20px; border:1px solid var(--line); overflow:hidden;
+  display:flex; flex-direction:column; align-items:center; gap:.5em;
+  padding:1.5em 1.1em 1.2em; text-align:center; position:relative}
+.ob h4{font-size:.82rem; line-height:1.16; letter-spacing:-.028em; font-weight:800;
+  color:var(--ob-ink); text-wrap:balance}
+.ob p{font-size:.6rem; line-height:1.42; color:#4B4B50}
+.ob__btn{margin-top:auto; background:var(--ob-blue); color:#fff; border-radius:999px;
+  padding:.62em 1em; font-size:.66rem; font-weight:700; width:100%;
+  position:relative; z-index:1}
+.ob__alt{font-size:.55rem; color:#6C6C72; margin-top:.5em; position:relative; z-index:1}
+.ob__alt i{font-style:normal; color:#A8A8AE}
+.ob__tiles{display:flex; gap:.5em; justify-content:center; margin-bottom:.3em}
+.ob__tiles span{width:34px; height:40px; border-radius:8px; background:var(--ob-tint)}
+.ob__tiles span:first-child{transform:rotate(-7deg)}
+.ob__tiles span:last-child{transform:rotate(7deg)}
+.ob__globe{position:absolute; left:50%; bottom:-58%; width:150%; aspect-ratio:1; z-index:0;
+  transform:translateX(-50%); border:1.5px solid var(--ob-ink); border-radius:50%; opacity:.85}
+.ob__globe::before,.ob__globe::after{content:''; position:absolute; inset:0;
+  border:1.5px solid var(--ob-ink); border-radius:50%}
+.ob__globe::before{transform:scaleX(.45)}
+.ob__globe::after{transform:scaleY(.45)}
+.ob__pin{width:20px; height:20px; border-radius:50% 50% 50% 8px; background:var(--ob-tint);
+  transform:rotate(-45deg); margin-bottom:.35em}
+.ob__blobs{display:flex; flex-wrap:wrap; gap:.4em; justify-content:center; margin-top:.5em}
+.ob__blobs span{width:44px; height:44px; background:var(--ob-tint)}
+.ob__blobs span:nth-child(1){border-radius:40% 60% 55% 45%}
+.ob__blobs span:nth-child(2){border-radius:60% 40% 45% 55%}
+.ob__blobs span:nth-child(3){border-radius:50% 50% 12% 50%}
+.ob__orbit{position:relative; width:78px; height:78px; margin:.4em 0 .6em}
+.ob__orbit i{position:absolute; border-radius:50%; background:var(--ob-tint)}
+.ob__orbit i:nth-child(1){inset:14px; background:#D9E6E6}
+.ob__orbit i:nth-child(2){width:15px; height:15px; top:-2px; right:-4px; background:var(--ob-blue)}
+.ob__orbit i:nth-child(3){width:13px; height:13px; bottom:12px; left:-8px; background:var(--ob-blue)}
+.ob__orbit i:nth-child(4){width:9px; height:9px; top:8px; left:-6px}
+.ob__orbit i:nth-child(5){width:8px; height:8px; bottom:-2px; right:6px; background:#D9E6E6}
+.ob-wrap{display:flex; justify-content:center}
+
 /* notification rows */
 .notif{border-top:1px solid var(--line)}
 .notif__r{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:1.4em;
@@ -183,6 +223,76 @@
     <div class="m-swap m-swap--wide"><span class="out out--struck">Onboarding that guilts you into completing a profile</span><span class="in">Name and neighbourhood. That&rsquo;s enough. Everything else is optional and non-blocking.</span></div>
     <div class="m-swap m-swap--wide"><span class="out out--struck">Empty states that nudge you to create content</span><span class="in">&ldquo;Quiet on the street right now&rdquo; &mdash; never &ldquo;Be the first to post!&rdquo;</span></div>
     <div class="m-swap m-swap--wide"><span class="out out--struck">Promoted placement and pay-to-boost listings</span><span class="in">Every store listing uses the same format regardless of how active or paying the owner is.</span></div>
+  </div>
+</section>
+
+<!-- ── ONBOARDING ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Onboarding</span>
+    <h2 class="m-h2">Three screens, and nothing is asked of you until the last one</h2>
+    <p>The anti-pattern list rules out onboarding that guilts people into completing a profile, so the
+      entry sequence had to earn its length. Each screen carries exactly one idea &mdash; what the app
+      is, who it is for, and what you can do with it &mdash; and the account only appears at the end.</p>
+  </div>
+
+  <div class="m-grid m-grid-3 m-grid-feat">
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
+        <div class="ob__tiles"><span></span><span></span></div>
+        <h4>Your Nearby World, Just a Tap Away</h4>
+        <p>Connect with people around you. Share, discover, and act in your area</p>
+        <span class="ob__btn">Start Connecting</span>
+        <div class="ob__globe" aria-hidden="true"></div>
+      </div></div></div>
+      <p class="m-stmt">Screen one states the radius, not the feature list.</p>
+      <span class="m-tag">Welcome</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
+        <div class="ob__pin" aria-hidden="true"></div>
+        <h4>A neighbourhood full of helpful people</h4>
+        <p>We make it easier for everyone to connect, support and grow together</p>
+        <div class="ob__blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+        <span class="ob__btn">Continue</span>
+      </div></div></div>
+      <p class="m-stmt">Screen two shows neighbours, not an illustration of a product.</p>
+      <span class="m-tag">Mission</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
+        <div class="ob__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <h4>Post What Matters, See Only Nearby</h4>
+        <p>Share anything &mdash; sell, ask, or express. Your post reaches people near you instantly.</p>
+        <span class="ob__btn">Create your content</span>
+        <span class="ob__alt">Already have an account? <i>Sign In</i></span>
+      </div></div></div>
+      <p class="m-stmt">Screen three is the first and only ask.</p>
+      <span class="m-tag">Post</span>
+    </div>
+  </div>
+
+  <div class="m-grid m-grid-2">
+    <div class="m-stack">
+      <h3 class="m-h3">What the sequence does</h3>
+      <ul class="m-list m-dim">
+        <li>Photography of real neighbours, not illustration &mdash; the same commitment to unpolished authenticity the feed makes</li>
+        <li>One idea per screen, so nobody has to read to continue</li>
+        <li>Sign-in is present but secondary, sitting under the primary action rather than gating it</li>
+        <li>No profile completion, no interest picker, no permissions wall before the value is shown</li>
+      </ul>
+    </div>
+    <div class="m-stack">
+      <h3 class="m-h3">What it deliberately omits</h3>
+      <ul class="m-list m-dim">
+        <li>No progress dots implying a long sequence ahead</li>
+        <li>No location permission requested before the app has explained why it needs one</li>
+        <li>No social sign-in buttons harvesting a contact graph on first open</li>
+        <li>No &ldquo;skip&rdquo; framed as giving something up</li>
+      </ul>
+    </div>
   </div>
 </section>
 
