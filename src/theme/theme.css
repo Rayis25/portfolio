@@ -1,0 +1,201 @@
+/* ============================================================
+   PORTFOLIO THEME — "MARKED UP"
+   Neo-brutalist: hard borders, flat colour, offset shadows,
+   no gradients, no radii, no softness.
+   Case studies consume the tokens and primitives below.
+   ============================================================ */
+
+/* ---- tokens ------------------------------------------------ */
+:root{
+  --paper:#E8E4D8;
+  --paper-2:#DCD7C4;
+  --card:#FFFFFF;
+  --ink:#111111;
+  --ink-2:#57554B;
+  --yellow:#FFE000;
+  --red:#FF3B00;
+  --blue:#1F3FFF;
+  --on-accent:#111111;
+
+  --bd:2px;
+  --bd-hv:3px;
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --shadow-lg:10px 10px 0 var(--ink);
+
+  --display:'Bricolage Grotesque','Archivo',system-ui,sans-serif;
+  --body:'Archivo',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  /* upper bound keeps the longest hero line ("PROJECT MANAGEMENT", ~11.2em at
+     this weight) inside the 1180px wrap; lower bound keeps it inside a 360px
+     phone. The line is set nowrap so the strike can be drawn as one bar. */
+  --t-hero:clamp(1.55rem,7.2vw,5.6rem);
+  --t-h2:clamp(1.9rem,4.4vw,3.4rem);
+  --t-h3:clamp(1.15rem,1.9vw,1.5rem);
+  --t-lede:clamp(1.08rem,1.5vw,1.28rem);
+  --t-body:1.0625rem;
+  --t-mono:.72rem;
+
+  --wrap:1180px;
+  --pad:clamp(18px,4vw,40px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#131311; --paper-2:#1E1E1A; --card:#1E1E1A;
+    --ink:#F2EFE3; --ink-2:#9B978A;
+    --yellow:#FFE000; --red:#FF5426; --blue:#7C8CFF;
+    --on-accent:#111111;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131311; --paper-2:#1E1E1A; --card:#1E1E1A;
+  --ink:#F2EFE3; --ink-2:#9B978A;
+  --yellow:#FFE000; --red:#FF5426; --blue:#7C8CFF;
+  --on-accent:#111111;
+}
+:root[data-theme="light"]{
+  --paper:#E8E4D8; --paper-2:#DCD7C4; --card:#FFFFFF;
+  --ink:#111111; --ink-2:#57554B;
+  --yellow:#FFE000; --red:#FF3B00; --blue:#1F3FFF;
+  --on-accent:#111111;
+}
+
+/* ---- base -------------------------------------------------- */
+*{box-sizing:border-box; border-radius:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:var(--t-body); line-height:1.6;
+  -webkit-font-smoothing:antialiased; font-synthesis-weight:none;
+}
+::selection{background:var(--yellow); color:#111}
+img{max-width:100%; display:block}
+p{margin:0}
+h1,h2,h3,h4{margin:0; font-weight:800; text-wrap:balance}
+ul,ol{margin:0; padding:0; list-style:none}
+a{color:inherit; text-decoration-thickness:2px; text-underline-offset:.2em}
+a:hover{background:var(--yellow); color:#111; text-decoration:none}
+:focus-visible{outline:var(--bd-hv) solid var(--blue); outline-offset:2px}
+
+.t-skip{position:absolute; left:-9999px; top:0; z-index:99;
+  background:var(--ink); color:var(--paper); padding:.8em 1.2em;
+  font:700 var(--t-mono)/1 var(--mono); letter-spacing:.16em; text-transform:uppercase}
+.t-skip:focus{left:0}
+
+/* ---- layout ------------------------------------------------ */
+.t-wrap{max-width:var(--wrap); margin:0 auto; padding:0 var(--pad)}
+.t-sec{margin-bottom:clamp(56px,9vw,116px)}
+.t-stack{display:flex; flex-direction:column; gap:1.1em}
+.t-stack-lg{display:flex; flex-direction:column; gap:clamp(1.6em,3vw,2.4em)}
+.t-measure{max-width:66ch}
+.t-split{display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:clamp(1.4em,3vw,2.6em); align-items:start}
+.t-cols{display:grid; gap:var(--bd); background:var(--ink);
+  border:var(--bd) solid var(--ink)}
+.t-cols > *{background:var(--paper)}
+.t-cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.t-cols-3{grid-template-columns:repeat(auto-fit,minmax(224px,1fr))}
+.t-cols-4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+
+/* ---- section header bar ------------------------------------ */
+.t-bar{display:flex; align-items:center; justify-content:space-between; gap:1em;
+  flex-wrap:wrap; border:var(--bd) solid var(--ink); background:var(--ink);
+  color:var(--paper); padding:.72em 1em; margin-bottom:clamp(1.4em,3vw,2.2em);
+  font:700 var(--t-mono)/1.35 var(--mono); letter-spacing:.18em; text-transform:uppercase}
+.t-bar__l{display:flex; align-items:center; gap:.75em}
+.t-bar__sq{width:11px; height:11px; background:var(--yellow); flex:none}
+.t-bar__sq--red{background:var(--red)}
+.t-bar__i{color:var(--paper); opacity:.62; font-variant-numeric:tabular-nums}
+
+/* ---- boxes ------------------------------------------------- */
+.t-box{border:var(--bd) solid var(--ink); background:var(--paper);
+  padding:clamp(1.15em,2.4vw,1.7em)}
+.t-box--card{background:var(--card); box-shadow:var(--shadow)}
+.t-box--inset{background:var(--paper-2)}
+.t-box--yellow{background:var(--yellow); color:#111}
+.t-box--ink{background:var(--ink); color:var(--paper)}
+.t-box--flush{padding:0}
+/* a padded cell for direct children of .t-cols, which already draws the rules */
+.t-cell{padding:clamp(1.15em,2.4vw,1.7em)}
+.t-cell__h{margin:.8em 0 .5em}
+.t-cell p{font-size:.93rem; line-height:1.5; color:var(--ink-2)}
+
+/* ---- typography roles -------------------------------------- */
+.t-hero{font-family:var(--display); font-weight:800; font-size:var(--t-hero);
+  line-height:.93; letter-spacing:-.035em; text-transform:uppercase}
+.t-h2{font-family:var(--display); font-weight:800; font-size:var(--t-h2);
+  line-height:1.0; letter-spacing:-.028em; text-transform:uppercase}
+.t-h3{font-family:var(--display); font-weight:700; font-size:var(--t-h3);
+  line-height:1.15; letter-spacing:-.015em}
+.t-lede{font-size:var(--t-lede); line-height:1.5}
+.t-dim{color:var(--ink-2)}
+.t-mono{font:500 var(--t-mono)/1.5 var(--mono); letter-spacing:.16em; text-transform:uppercase}
+.t-num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+b,strong{font-weight:700}
+
+/* highlighter + correction — the two marks the theme is named for */
+.t-mark{background:var(--yellow); color:#111; padding:.06em .16em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone; font-weight:600}
+.t-strike{position:relative; white-space:nowrap}
+.t-strike::after{content:''; position:absolute; left:-.06em; right:-.06em; top:52%;
+  height:.09em; min-height:3px; background:var(--red); transform:scaleX(1);
+  transform-origin:left center}
+/* Yellow highlighter drawn as a background layer rather than a negative-z pseudo,
+   so the text always paints above it and the sweep is a background-size change. */
+.t-wipe{background-image:linear-gradient(var(--yellow),var(--yellow));
+  background-repeat:no-repeat; background-size:0 100%; color:var(--ink)}
+.t-wipe.is-on{background-size:100% 100%; color:#111}
+/* A highlight on its own display line. An inline background box is ~1.27em tall,
+   so at display line-heights below that it bleeds into the line above; giving the
+   highlight its own block and a top margin buys back the room. */
+.t-hl{display:block; width:fit-content; max-width:100%; background:var(--yellow);
+  color:#111; padding:.05em .12em; margin:.12em 0 0 -.12em}
+
+/* ---- tags / chips ------------------------------------------ */
+.t-tag{display:inline-flex; align-items:center; gap:.5em; width:fit-content;
+  border:var(--bd) solid var(--ink); padding:.42em .7em; background:var(--paper);
+  font:700 var(--t-mono)/1 var(--mono); letter-spacing:.14em; text-transform:uppercase}
+.t-tag--red{background:var(--red); color:#fff; border-color:var(--ink)}
+.t-tag--yellow{background:var(--yellow); color:#111}
+.t-tag--ink{background:var(--ink); color:var(--paper)}
+
+/* ---- figure ------------------------------------------------ */
+.t-fig{margin:0; border:var(--bd) solid var(--ink); background:var(--card);
+  box-shadow:var(--shadow)}
+.t-fig img{width:100%; height:auto; display:block; border-bottom:var(--bd) solid var(--ink)}
+.t-fig figcaption{padding:.85em 1em; font:400 .82rem/1.5 var(--mono); color:var(--ink);
+  background:var(--paper)}
+.t-fig figcaption b{font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:.76rem}
+
+/* ---- stat -------------------------------------------------- */
+.t-stat{display:flex; flex-direction:column; gap:.4em; padding:clamp(1.2em,2.4vw,1.7em)}
+.t-stat__k{font:700 var(--t-mono)/1.4 var(--mono); letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-2)}
+.t-stat__v{font-family:var(--display); font-weight:800; letter-spacing:-.04em;
+  font-size:clamp(2.6rem,6vw,4rem); line-height:.9; font-variant-numeric:tabular-nums}
+.t-stat__v small{font-size:.34em; letter-spacing:.06em; font-family:var(--mono);
+  font-weight:500; margin-left:.35em; vertical-align:.45em}
+.t-stat p{font-size:.92rem; line-height:1.5; color:var(--ink-2)}
+
+/* ---- list -------------------------------------------------- */
+.t-list li{position:relative; padding-left:1.5em; margin-top:.55em; color:var(--ink-2)}
+.t-list li::before{content:''; position:absolute; left:0; top:.55em;
+  width:9px; height:9px; background:var(--red)}
+.t-list li:first-child{margin-top:0}
+
+/* ---- quote ------------------------------------------------- */
+.t-quote{border:var(--bd) solid var(--ink); background:var(--yellow); color:#111;
+  padding:clamp(1.3em,2.8vw,2em); box-shadow:var(--shadow)}
+.t-quote p{font-family:var(--display); font-weight:700;
+  font-size:clamp(1.3rem,2.7vw,2rem); line-height:1.12; letter-spacing:-.02em}
+.t-quote cite{display:block; margin-top:1em; font:700 var(--t-mono)/1 var(--mono);
+  letter-spacing:.16em; text-transform:uppercase; font-style:normal; opacity:.72}
+
+@media (max-width:900px){
+  .t-split{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; animation-delay:0ms !important;
+    transition-duration:.001ms !important}
+}

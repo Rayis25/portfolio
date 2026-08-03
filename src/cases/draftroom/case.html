@@ -1,0 +1,519 @@
+<title>Draftroom — Solving project management for creative teams</title>
+<style>/*@FONTS@*/</style>
+<style>/*@THEME@*/</style>
+<style>
+/* ===== case-specific ===== */
+
+/* -- hero -- */
+.hero{padding:clamp(26px,5vw,54px) 0 clamp(44px,7vw,84px)}
+.hero__strip{display:flex; flex-wrap:wrap; align-items:stretch; border:var(--bd) solid var(--ink);
+  margin-bottom:clamp(1.6em,4vw,2.8em); background:var(--ink); gap:var(--bd)}
+.hero__strip span{flex:1 1 auto; background:var(--paper); padding:.7em 1em;
+  font:700 var(--t-mono)/1.4 var(--mono); letter-spacing:.16em; text-transform:uppercase}
+.hero__strip span:first-child{background:var(--yellow); color:#111}
+
+.hl{font-family:var(--display); font-weight:800; font-size:var(--t-hero); line-height:.97;
+  letter-spacing:-.035em; text-transform:uppercase}
+.hl span{display:block; width:fit-content; max-width:100%}
+.hl .a{color:var(--ink-2)}
+.hl .c{padding:.05em .12em; margin:.11em 0 0 -.12em}
+
+.hero__lede{margin-top:clamp(1.6em,3.5vw,2.4em); max-width:54ch; font-size:var(--t-lede);
+  line-height:1.5; color:var(--ink-2)}
+.hero__lede b{color:var(--ink); font-weight:700}
+.spec{margin-top:clamp(1.8em,4vw,2.8em)}
+.spec div{padding:1em 1.1em; display:flex; flex-direction:column; gap:.45em}
+.spec dt{font:700 var(--t-mono)/1 var(--mono); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2)}
+.spec dd{margin:0; font-weight:600; font-size:.98rem; line-height:1.35}
+
+/* -- load sequence: strike the old words, then sweep the highlighter -- */
+.hl .b .t-strike::after{transform:scaleX(0)}
+.play .b .t-strike::after{transform:scaleX(1); transition:transform .34s steps(9,end) .35s}
+.play .c{background-size:100% 100%; color:#111;
+  transition:background-size .28s steps(8,end) .78s, color 0s linear .82s}
+
+/* -- diagram -- */
+.diagram{border:var(--bd) solid var(--ink); background:var(--card); box-shadow:var(--shadow);
+  padding:clamp(1em,2.4vw,1.8em); overflow-x:auto}
+.diagram svg{display:block; width:100%; min-width:560px; height:auto}
+.dg-t{font-family:var(--mono); font-size:13px; font-weight:500; fill:var(--ink)}
+.dg-k{font-family:var(--mono); font-size:11px; font-weight:700; fill:var(--ink);
+  letter-spacing:1.6px}
+.dg-b{font-family:'Bricolage Grotesque',sans-serif; font-size:19px; font-weight:800; fill:#111}
+.dg-s{font-family:var(--mono); font-size:12px; fill:#111}
+
+/* -- vocabulary -- */
+.vocab{border:var(--bd) solid var(--ink); box-shadow:var(--shadow); background:var(--paper)}
+.vhead,.vrow{display:grid; grid-template-columns:1fr 1fr 1.3fr; gap:1.1em;
+  padding:.72em clamp(.8em,1.8vw,1.15em); align-items:center}
+.vhead{background:var(--ink); color:var(--paper);
+  font:700 var(--t-mono)/1.3 var(--mono); letter-spacing:.16em; text-transform:uppercase}
+.vrow{border-top:var(--bd) solid var(--ink)}
+.vrow:nth-child(even){background:var(--paper-2)}
+.vrow .old{font-family:var(--mono); font-size:.9rem; font-weight:500; color:var(--ink-2)}
+.vrow .old .t-strike::after{transform:scaleX(0)}
+.vrow.on .old .t-strike::after{transform:scaleX(1); transition:transform .26s steps(7,end)}
+.vrow .new{font-weight:700; font-size:1rem; width:fit-content;
+  padding:.1em .18em; margin-left:-.18em}
+.vrow.on .new{background-size:100% 100%; color:#111;
+  transition:background-size .24s steps(6,end) .16s, color 0s linear .2s}
+.vrow .why{font-size:.9rem; line-height:1.45; color:var(--ink-2)}
+
+/* -- before / after -- */
+.swap{display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(.9em,2.5vw,2em);
+  align-items:start; padding:clamp(1.2em,2.6vw,1.8em)}
+.swap + .swap{border-top:var(--bd) solid var(--ink)}
+.swap__s{display:flex; flex-direction:column; gap:.75em}
+.swap__k{font:700 var(--t-mono)/1 var(--mono); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2)}
+.swap__a{font-family:var(--mono); font-weight:700; color:var(--red); font-size:1.3rem;
+  line-height:1; padding-top:2.05em}
+.swap__d{font-size:.9rem; line-height:1.45; color:var(--ink-2)}
+
+/* -- shipped -- */
+.ship{display:grid; grid-template-columns:clamp(56px,7vw,92px) minmax(0,1fr);
+  gap:0 clamp(1em,2.4vw,1.8em); padding:clamp(1.2em,2.6vw,1.7em) 0;
+  border-top:var(--bd) solid var(--ink)}
+.ship:first-child{border-top:0; padding-top:0}
+.ship__n{font-family:var(--display); font-weight:800; font-size:clamp(1.8rem,3.6vw,2.6rem);
+  line-height:.85; letter-spacing:-.04em; color:var(--red); font-variant-numeric:tabular-nums}
+.ship__b{max-width:64ch; display:flex; flex-direction:column; gap:.5em}
+.ship__b p{color:var(--ink-2)}
+
+/* -- sign off -- */
+.close{border-top:var(--bd-hv) solid var(--ink); padding-top:clamp(2em,5vw,3.4em);
+  margin-bottom:clamp(48px,8vw,90px)}
+.close__f{font-family:var(--display); font-weight:800; font-size:clamp(1.7rem,4.6vw,3.2rem);
+  line-height:.98; letter-spacing:-.032em; text-transform:uppercase; max-width:17ch}
+.sign{display:flex; flex-wrap:wrap; gap:var(--bd); background:var(--ink);
+  border:var(--bd) solid var(--ink); margin-top:clamp(1.8em,4vw,2.6em)}
+.sign span{flex:1 1 auto; background:var(--paper); padding:.8em 1em;
+  font:700 var(--t-mono)/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase}
+.sign span:first-child{background:var(--yellow); color:#111}
+
+@media (max-width:900px){
+  .vhead,.vrow{grid-template-columns:1fr 1fr; gap:.35em 1em}
+  .vhead span:nth-child(3){display:none}
+  .vrow .why{grid-column:1 / -1; margin-top:.35em}
+  .swap{grid-template-columns:1fr; gap:1em}
+  .swap__a{padding:0; transform:rotate(90deg); width:fit-content}
+}
+</style>
+
+<a class="t-skip" href="#main">Skip to case study</a>
+
+<div class="t-wrap">
+
+<!-- ══════ HERO ══════ -->
+<header class="hero">
+  <div class="hero__strip">
+    <span>Draftroom</span><span>B2B SaaS · Work management</span><span>Lead UX Designer</span>
+  </div>
+
+  <h1 class="hl" id="hl">
+    <span class="a">We stopped</span>
+    <span class="a">designing for</span>
+    <span class="b"><span class="t-strike">project management</span></span>
+    <span class="c t-wipe">creative momentum</span>
+  </h1>
+
+  <p class="hero__lede">A work-management product for creative agencies was built, shipped &mdash;
+    and quietly ignored. The problem was never the feature set. It was that the software asked
+    designers, editors and creative directors <b>to think like project managers</b> before it
+    would let them do their jobs.</p>
+
+  <dl class="spec t-cols t-cols-4">
+    <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
+    <div><dt>Timeframe</dt><dd>3 weeks</dd></div>
+    <div><dt>Surfaces</dt><dd>Desktop &amp; mobile</dd></div>
+    <div><dt>Expertise</dt><dd>UX research, usability testing, designing for scale</dd></div>
+  </dl>
+</header>
+
+<main id="main">
+
+<!-- ══════ 01 BRIEF ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Brief</span><span class="t-bar__i">01 / 09</span></div>
+  <div class="t-split">
+    <div class="t-stack t-measure">
+      <h2 class="t-h2">A sentence the market understood, on top of a product it didn&rsquo;t</h2>
+      <p>I knew Thaher before Draftroom. One day he walked me through the B2B SaaS product he was
+        building for marketing agencies, and the pitch was a single line.</p>
+      <p>The line was right. The product underneath it wasn&rsquo;t &mdash; and he knew it. That was the
+        whole brief: <b>the statement is solid, but the solution isn&rsquo;t.</b></p>
+      <p>The obvious read was that Draftroom needed to become a better Trello. Cleaner boards, faster
+        cards, tighter Slack-style comments. Three weeks of onboarding sessions said something else
+        entirely.</p>
+    </div>
+    <div class="t-quote">
+      <p>Manage your marketing agency in one place. Never switch to Sheets and Drive again.</p>
+      <cite>Draftroom&rsquo;s positioning</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 02 AUDIT ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq t-bar__sq--red"></i>Audit</span><span class="t-bar__i">02 / 09</span></div>
+  <div class="t-stack-lg">
+    <div class="t-stack t-measure">
+      <h2 class="t-h2">A system that had never actually existed</h2>
+      <p>Creative teams run on briefs, feedback rounds and deliverables. Every time work moved between
+        those stages, the process broke &mdash; not slowly, but completely.</p>
+      <p>The real workflow was scattered across WhatsApp threads, Drive folders, email chains,
+        spreadsheets and verbal agreements made in passing. Nothing was connected to anything else.</p>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 920 320" role="img" aria-label="Diagram: five disconnected surfaces — WhatsApp threads, Drive folders, email chains, spreadsheets and verbal agreements — collected onto one bus line and consolidated into a single product, Draftroom.">
+        <text class="dg-k" x="2" y="12">BEFORE — FIVE SURFACES</text>
+        <text class="dg-k" x="614" y="12">AFTER — ONE</text>
+        <g>
+          <rect x="2" y="30" width="228" height="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text class="dg-t" x="16" y="56">WhatsApp threads</text>
+          <rect x="2" y="88" width="228" height="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text class="dg-t" x="16" y="114">Drive folders</text>
+          <rect x="2" y="146" width="228" height="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text class="dg-t" x="16" y="172">Email chains</text>
+          <rect x="2" y="204" width="228" height="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text class="dg-t" x="16" y="230">Spreadsheets</text>
+          <rect x="2" y="262" width="228" height="42" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <text class="dg-t" x="16" y="288">Verbal agreements</text>
+        </g>
+        <g stroke="var(--red)" stroke-width="2" fill="none">
+          <path d="M230 51 H500"/><path d="M230 109 H500"/><path d="M230 167 H500"/>
+          <path d="M230 225 H500"/><path d="M230 283 H500"/>
+        </g>
+        <path d="M500 51 V283" stroke="var(--red)" stroke-width="4" fill="none"/>
+        <path d="M500 167 H586" stroke="var(--ink)" stroke-width="6" fill="none"/>
+        <path d="M578 155 L602 167 L578 179 Z" fill="var(--ink)"/>
+        <rect x="606" y="126" width="310" height="84" fill="var(--yellow)" stroke="var(--ink)" stroke-width="2"/>
+        <text class="dg-b" x="626" y="163">DRAFTROOM</text>
+        <text class="dg-s" x="626" y="188">One connected workflow</text>
+      </svg>
+    </div>
+
+    <div class="t-cols t-cols-3">
+      <div class="t-cell">
+        <span class="t-tag t-tag--red">Failure 01</span>
+        <h3 class="t-h3 t-cell__h">Designers worked blind</h3>
+        <ul class="t-list">
+          <li>No reliable way to find the latest brief or correct file version without asking a person</li>
+          <li>Getting feedback meant chasing people across three different platforms</li>
+          <li>No visibility into where a deliverable actually sat in the review process</li>
+        </ul>
+      </div>
+      <div class="t-cell">
+        <span class="t-tag t-tag--red">Failure 02</span>
+        <h3 class="t-h3 t-cell__h">Humans were the integration layer</h3>
+        <ul class="t-list">
+          <li>Strategists and editors spent their day fielding status requests instead of working</li>
+          <li>Every miscommunication needed a person to resolve it manually</li>
+          <li>A shared system should have absorbed all of this. There wasn&rsquo;t one</li>
+        </ul>
+      </div>
+      <div class="t-cell">
+        <span class="t-tag t-tag--red">Failure 03</span>
+        <h3 class="t-h3 t-cell__h">Risk compounded quietly</h3>
+        <ul class="t-list">
+          <li>WhatsApp and Drive were never built for production tracking</li>
+          <li>Work reached clients having passed review stages without formal sign-off</li>
+          <li>Every skipped approval was an unreviewed deliverable, and the count only went up</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="t-measure">The cost was real and it was daily. It just never appeared on anyone&rsquo;s
+      dashboard, because there was no dashboard &mdash; and no system to put one on.</p>
+
+    <figure class="t-fig">
+      <img src="@IMG_AUDIT@" alt="UX audit board showing the legacy process spread across dashboards, task lists, phase breakdowns and folder trees." width="1500" height="523" loading="lazy">
+      <figcaption><b>UX audit of the legacy process.</b> Mapping what teams actually did, tool by tool,
+        surfaced how much of the workflow existed only in people&rsquo;s heads.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════ 03 INSIGHT ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Insight</span><span class="t-bar__i">03 / 09</span></div>
+  <div class="t-stack-lg">
+    <div class="t-stack t-measure">
+      <h2 class="t-h2">The humans behind the screens</h2>
+      <p>In product work we reduce people to &ldquo;users&rdquo; very quickly. But the people on the other
+        side of Draftroom were not a segment &mdash; they were individuals with habits, frustrations and
+        strongly held mental models about how creative work gets made.</p>
+      <p>So before designing anything, I sat with them: designers, strategists, editors and creative
+        directors, each of whom had lived through the broken workflow firsthand. I wasn&rsquo;t collecting
+        feature requests. I wanted to see how they actually think, talk, decide and hand off.</p>
+    </div>
+
+    <figure class="t-fig">
+      <img src="@IMG_RESEARCH@" alt="Screen-shared onboarding session reviewing the Draftroom projects workspace with the founder." width="1400" height="745" loading="lazy">
+      <figcaption><b>Onboarding and observation sessions.</b> Watching real teams move through their own
+        projects in the live product, rather than asking them to describe it afterwards.</figcaption>
+    </figure>
+
+    <div class="t-quote t-measure">
+      <p>The product wasn&rsquo;t motivating anyone to track their work &mdash; because it had been
+        designed for technical teams and handed to creative ones.</p>
+      <cite>Key finding</cite>
+    </div>
+
+    <div class="t-stack t-measure">
+      <p>Creative professionals don&rsquo;t naturally think in rigid workflows, statuses or structured
+        task management. That isn&rsquo;t a training problem to be solved with a better onboarding tour.
+        It is how the work is shaped.</p>
+      <p>For Draftroom to be adopted, it had to stop feeling like project management software and start
+        feeling like part of the creative process. Products aren&rsquo;t adopted because they have better
+        features. They&rsquo;re adopted when they fit the way people already work.</p>
+    </div>
+
+    <div>
+      <p class="t-mono" style="margin-bottom:1em">Four opportunities came out of the research</p>
+      <div class="t-cols t-cols-4">
+        <div class="t-cell"><span class="t-tag t-tag--yellow">01</span>
+          <h3 class="t-h3 t-cell__h">Streamline assignment</h3>
+          <p>No creator should have to ask what they are supposed to be working on next.</p></div>
+        <div class="t-cell"><span class="t-tag t-tag--yellow">02</span>
+          <h3 class="t-h3 t-cell__h">Minimise tool switching</h3>
+          <p>One interface, instead of bouncing between four to track a single deliverable.</p></div>
+        <div class="t-cell"><span class="t-tag t-tag--yellow">03</span>
+          <h3 class="t-h3 t-cell__h">Surface status upfront</h3>
+          <p>A missed review discovered after delivery is expensive rework.</p></div>
+        <div class="t-cell"><span class="t-tag t-tag--yellow">04</span>
+          <h3 class="t-h3 t-cell__h">Guidance in context</h3>
+          <p>Brief, assets and feedback exactly where the work happens.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 04 REFRAME ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Reframe</span><span class="t-bar__i">04 / 09</span></div>
+  <div class="t-box t-box--ink" style="box-shadow:var(--shadow-lg); padding:clamp(1.6em,4vw,3em)">
+    <p class="t-mono" style="color:var(--yellow); margin-bottom:1.1em">The decision everything else follows from</p>
+    <p class="t-h2" style="max-width:24ch">We stopped designing for task completion and started designing for<span class="t-hl">creative momentum</span></p>
+    <p style="margin-top:1.4em; max-width:62ch; opacity:.82">The product was not being used because it was
+      asking creative people to think like project managers. That was never going to work &mdash; not with
+      better onboarding, not with a cleaner board, not with more features. Two decisions carried almost all
+      of the weight, and neither of them was a feature.</p>
+  </div>
+</section>
+
+<!-- ══════ 05 REVISION 01 ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq t-bar__sq--red"></i>Revision 01 &mdash; Language</span><span class="t-bar__i">05 / 09</span></div>
+  <div class="t-stack-lg">
+    <div class="t-stack t-measure">
+      <h2 class="t-h2">Rewrite the language before touching the interface</h2>
+      <p>One thing became unmissable in research: the product was speaking the language of project
+        management, while its users spoke the language of creative work.</p>
+      <p><b>Task. Project. Status. Assignee.</b> Mechanical words, handed to people who think in
+        campaigns, concepts, revisions, approvals and deliverables.</p>
+      <p>Draftroom wasn&rsquo;t difficult to use. It was difficult to <span class="t-mark">relate to</span>.
+        So the first major design decision wasn&rsquo;t adding a feature or redesigning a dashboard &mdash;
+        it was rewriting the product&rsquo;s entire vocabulary.</p>
+    </div>
+
+    <figure class="t-fig">
+      <img src="@IMG_TABLE@" alt="Draftroom asset table with a status dropdown open, showing To Do, In Progress, Blocked, In Review, Changes Requested, Approved and Done." width="1500" height="747" loading="lazy">
+      <figcaption><b>The before state.</b> Generic engineering statuses in the shipped product &mdash;
+        To Do, In Progress, Blocked, In Review, Changes Requested &mdash; every one a word creative teams
+        had to translate before they could use it.</figcaption>
+    </figure>
+
+    <div class="vocab" id="vocab">
+      <div class="vhead"><span>Product language</span><span>Creative language</span><span>Why it matters</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Task</span></span><span class="new t-wipe">Creative task / Deliverable</span><span class="why">Feels like actual work instead of a checklist item.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Project</span></span><span class="new t-wipe">Campaign / Client work</span><span class="why">Matches how agencies already organise their work.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Board</span></span><span class="new t-wipe">Workspace</span><span class="why">A more familiar and far less technical container.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">To Do</span></span><span class="new t-wipe">Planned</span><span class="why">Sounds intentional rather than rigid.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">In Progress</span></span><span class="new t-wipe">Working on</span><span class="why">Reflects how creatives actually describe ongoing work.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Review</span></span><span class="new t-wipe">Feedback</span><span class="why">Mirrors the agency review process, not a code review.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Done</span></span><span class="new t-wipe">Delivered</span><span class="why">Represents the real outcome &mdash; something reached the client.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Assignee</span></span><span class="new t-wipe">Owner</span><span class="why">The word agencies already use for accountability.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Due date</span></span><span class="new t-wipe">Delivery date</span><span class="why">Connects the date directly to a client expectation.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Comment</span></span><span class="new t-wipe">Feedback</span><span class="why">Frames the exchange as collaboration, not discussion.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Attachment</span></span><span class="new t-wipe">Design files</span><span class="why">Describes what is actually being handed over.</span></div>
+      <div class="vrow"><span class="old"><span class="t-strike">Archive</span></span><span class="new t-wipe">Completed work</span><span class="why">Says plainly what happens to finished projects.</span></div>
+    </div>
+
+    <div class="t-split">
+      <div class="t-box t-box--yellow" style="box-shadow:var(--shadow)">
+        <span class="t-tag t-tag--ink">Design principle</span>
+        <p class="t-h3" style="margin-top:1em; font-size:clamp(1.2rem,2.2vw,1.65rem); line-height:1.15">
+          People shouldn&rsquo;t have to learn a new language to use a product. The product should adapt
+          to the language they already have.</p>
+      </div>
+      <p class="t-dim">Adoption didn&rsquo;t improve because we added capability. It improved because the
+        product stopped feeling foreign. When software speaks your language, it doesn&rsquo;t register as
+        new software &mdash; it registers as familiar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 06 REVISION 02 ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq t-bar__sq--red"></i>Revision 02 &mdash; Tone</span><span class="t-bar__i">06 / 09</span></div>
+  <div class="t-stack-lg">
+    <div class="t-stack t-measure">
+      <h2 class="t-h2">Design for calm, not pressure</h2>
+      <p>Most project management tools run on manufactured urgency. High-priority labels. Overdue badges.
+        Red alerts. Constant reminders.</p>
+      <p>That approach works for operations teams. It does not work for creative ones. Creativity
+        doesn&rsquo;t thrive under sustained pressure &mdash; it thrives when people feel clear, focused
+        and in control of what&rsquo;s in front of them.</p>
+      <p>So instead of designing around deadlines, we designed around <span class="t-mark">readiness</span>.</p>
+    </div>
+
+    <div class="t-box t-box--flush" style="box-shadow:var(--shadow)">
+      <div class="swap">
+        <div class="swap__s"><span class="swap__k">Before</span>
+          <span class="t-tag t-tag--red">High priority</span>
+          <span class="swap__d">Ranks the work by how loudly it can shout, and says nothing about what to do.</span></div>
+        <div class="swap__a" aria-hidden="true">&rarr;</div>
+        <div class="swap__s"><span class="swap__k">After</span>
+          <span class="t-tag">Needs you</span>
+          <span class="swap__d">Names the one person who can move it forward, right now.</span></div>
+      </div>
+      <div class="swap">
+        <div class="swap__s"><span class="swap__k">Before</span>
+          <span class="t-tag t-tag--red">Pending</span>
+          <span class="swap__d">A dead state. True of everything, actionable for no one.</span></div>
+        <div class="swap__a" aria-hidden="true">&rarr;</div>
+        <div class="swap__s"><span class="swap__k">After</span>
+          <span class="t-tag">Your turn</span>
+          <span class="swap__d">A handoff. The work has arrived and it is now yours.</span></div>
+      </div>
+    </div>
+
+    <div class="t-stack t-measure">
+      <p><b>Red was pulled out of work states entirely</b> and reserved for notifications alone. Nothing a
+        designer owns is ever coloured like an error.</p>
+      <p>The interface stopped demanding attention and started directing it. The goal was never to make
+        work feel urgent &mdash; it was to make it feel approachable. This wasn&rsquo;t about removing
+        deadlines or reducing accountability. It was about changing the emotional experience of work.</p>
+      <p>When the interface feels calm instead of stressful, designers spend less energy reacting to the
+        tool and more energy making the thing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 07 FINAL ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Final &mdash; What shipped</span><span class="t-bar__i">07 / 09</span></div>
+  <div class="t-stack-lg">
+    <p class="t-lede t-measure">Every decision below traces back to one of the four opportunities, and all
+      of them to the reframe: momentum over completion.</p>
+
+    <div>
+      <div class="ship"><span class="ship__n">01</span><div class="ship__b">
+        <h3 class="t-h3">A single place for all creative work</h3>
+        <p>Every brief, cycle, deliverable and feedback round lives in one interface. No WhatsApp, no Drive
+          folders, no spreadsheet running in parallel. The work and the record of the work became the same
+          object &mdash; the only version of this that survives contact with a deadline.</p></div></div>
+      <div class="ship"><span class="ship__n">02</span><div class="ship__b">
+        <h3 class="t-h3">Cards that say why, not when</h3>
+        <p>Every card shows the creator what needs their attention and <span class="t-mark">why</span>. Not a
+          due date. Not a status label. A reason line: who is waiting, what they said, and what has to happen
+          before the work can move forward.</p></div></div>
+      <div class="ship"><span class="ship__n">03</span><div class="ship__b">
+        <h3 class="t-h3">Status that matches how creative work moves</h3>
+        <p>Script. Draft. Final. Feedback round. Approved. The language of the product matches the language
+          of the work, so creators never translate their own reality into software vocabulary before they
+          can act on it.</p></div></div>
+      <div class="ship"><span class="ship__n">04</span><div class="ship__b">
+        <h3 class="t-h3">Visibility without surveillance</h3>
+        <p>Leads and managers see where every piece of work stands without sending a single message. Not a
+          dashboard full of metrics nobody reads &mdash; a calm, specific signal about what is moving and
+          what is stuck.</p></div></div>
+      <div class="ship"><span class="ship__n">05</span><div class="ship__b">
+        <h3 class="t-h3">Built for the field as much as the studio</h3>
+        <p>An architect on a construction site and a designer at their desk are the same person in two
+          contexts. Draftroom serves both: a full planning surface on desktop, and a five-action field tool
+          on mobile &mdash; offline-resilient, and operable with one hand.</p></div></div>
+    </div>
+
+    <figure class="t-fig">
+      <img src="@IMG_WORKSPACE@" alt="Draftroom workspace shell with a quiet left rail, a workspace title and a single New Project affordance." width="1500" height="506" loading="lazy">
+      <figcaption><b>The workspace shell.</b> The first screen commits to the position: one calm surface,
+        one obvious next action, and no colour spent on anything that isn&rsquo;t a notification.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════ 08 DELIVERED ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Delivered</span><span class="t-bar__i">08 / 09</span></div>
+  <div class="t-stack-lg">
+    <p class="t-lede t-measure">Draftroom launched before creative teams hit a breaking point. The informal
+      infrastructure &mdash; WhatsApp groups, Drive folders, verbal agreements &mdash; was replaced by a
+      single connected workflow rather than being left to fail first.</p>
+    <div class="t-cols t-cols-3">
+      <div class="t-stat"><span class="t-stat__k">Tool consolidation</span>
+        <span class="t-stat__v">5<small>&rarr; 1</small></span>
+        <p>Communication and production tracking moved from five fragmented surfaces onto one product.</p></div>
+      <div class="t-stat"><span class="t-stat__k">Process compliance</span>
+        <span class="t-stat__v">100<small>%</small></span>
+        <p>Work moving through formal review stages went from ad hoc to fully structured.</p></div>
+      <div class="t-stat"><span class="t-stat__k">Speed to delivery</span>
+        <span class="t-stat__v">3<small>weeks</small></span>
+        <p>Core desktop and mobile surfaces researched, designed, tested and shipped on schedule.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 09 NEXT ROUND ══════ -->
+<section class="t-sec">
+  <div class="t-bar"><span class="t-bar__l"><i class="t-bar__sq"></i>Next round</span><span class="t-bar__i">09 / 09</span></div>
+  <div class="t-stack t-measure">
+    <h2 class="t-h2">What it turned into</h2>
+    <p>Beyond resolving the day-to-day friction of creative production, the <span class="t-mark">My Day</span>
+      framework and the field-first mobile patterns were adopted as the foundation for how the product
+      scales. A UX framework built for one designer&rsquo;s working day is now the basis for team-level
+      workflows, client visibility layers and multi-brand production environments.</p>
+    <p>In later iterations we designed and launched voice capture, a field inbox and AI-generated reason
+      lines &mdash; giving field users a way to document an observation in under thirty seconds, and feeding
+      that context straight back into the desktop review surface.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="close">
+  <p class="close__f">Not another task manager &mdash; a workspace that respects the creative process.</p>
+  <div class="sign">
+    <span>Muhammad Rayis</span><span>Lead UX Designer</span><span>Draftroom &middot; B2B SaaS</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hl = document.getElementById('hl');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#vocab .vrow'));
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    if (hl) hl.classList.add('play');
+    rows.forEach(function(r){ r.classList.add('on'); });
+    return;
+  }
+  if (hl) requestAnimationFrame(function(){ hl.classList.add('play'); });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var i = rows.indexOf(e.target);
+      setTimeout(function(){ e.target.classList.add('on'); }, Math.min(i,4)*60);
+      io.unobserve(e.target);
+    });
+  }, { rootMargin:'0px 0px -10% 0px', threshold:0.4 });
+  rows.forEach(function(r){ io.observe(r); });
+})();
+</script>
