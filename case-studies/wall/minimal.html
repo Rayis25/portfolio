@@ -239,11 +239,29 @@ b,strong{font-weight:600; color:var(--ink)}
 .wv__end{display:flex; flex-direction:column; align-items:center; gap:.7em; text-align:center}
 .wv__end hr{width:34px; height:1px; background:var(--line); border:0; margin:0}
 .wv__end span{font-size:.85rem; color:var(--muted)}
+.ob__photo-grad{background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
+.ob__heart{width:34px; height:34px; border-radius:50%; background:#E4ECFC;
+  display:flex; align-items:center; justify-content:center; margin-bottom:.15em}
+.ob__heart i{position:relative; width:11px; height:11px; transform:rotate(-45deg); background:var(--ob-blue)}
+.ob__heart i::before,.ob__heart i::after{content:''; position:absolute; width:11px; height:11px;
+  border-radius:50%; background:var(--ob-blue)}
+.ob__heart i::before{top:-5.5px; left:0}
+.ob__heart i::after{top:0; left:5.5px}
+.ob__bar{width:36px; height:3px; border-radius:2px; background:var(--ob-ink); opacity:.82;
+  margin-top:.5em}
+
 .wv__store{display:flex; flex-direction:column; gap:.35em}
 .wv__store b{color:var(--ink); font-size:.92rem; font-weight:600}
 .wv__lbl{font:500 .64rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase;
   color:var(--muted)}
 .wv__offer{font-size:.85rem; color:var(--text); line-height:1.45}
+
+/* cover collage — two flagship mockups shown poster-style under the hero */
+.cover{padding-bottom:0}
+.cover .m-well{gap:clamp(16px,3.4vw,40px); flex-wrap:wrap; padding:clamp(26px,5vw,54px) clamp(18px,3.4vw,36px)}
+.cover .ob-wrap{transition:none}
+.cover .ob-wrap:first-child{transform:rotate(-4deg)}
+.cover .ob-wrap:last-child{transform:rotate(3deg)}
 
 /* onboarding screen mockups — rebuilt in markup from the designs */
 .ob{--ob-bg:#FDF9F6; --ob-blue:#2F80ED; --ob-tint:#A8C8F0; --ob-ink:#0B0B0C;
@@ -260,7 +278,8 @@ b,strong{font-weight:600; color:var(--ink)}
 .ob__alt{font-size:.55rem; color:#6C6C72; margin-top:.5em; position:relative; z-index:1}
 .ob__alt i{font-style:normal; color:#A8A8AE}
 .ob__tiles{display:flex; gap:.5em; justify-content:center; margin-bottom:.3em}
-.ob__tiles span{width:34px; height:40px; border-radius:8px; background:var(--ob-tint)}
+.ob__tiles span{width:34px; height:40px; border-radius:8px}
+.ob__tiles span{background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
 .ob__tiles span:first-child{transform:rotate(-7deg)}
 .ob__tiles span:last-child{transform:rotate(7deg)}
 .ob__globe{position:absolute; left:50%; bottom:-58%; width:150%; aspect-ratio:1; z-index:0;
@@ -272,13 +291,13 @@ b,strong{font-weight:600; color:var(--ink)}
 .ob__pin{width:20px; height:20px; border-radius:50% 50% 50% 8px; background:var(--ob-tint);
   transform:rotate(-45deg); margin-bottom:.35em}
 .ob__blobs{display:flex; flex-wrap:wrap; gap:.4em; justify-content:center; margin-top:.5em}
-.ob__blobs span{width:44px; height:44px; background:var(--ob-tint)}
+.ob__blobs span{width:44px; height:44px; background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
 .ob__blobs span:nth-child(1){border-radius:40% 60% 55% 45%}
 .ob__blobs span:nth-child(2){border-radius:60% 40% 45% 55%}
 .ob__blobs span:nth-child(3){border-radius:50% 50% 12% 50%}
 .ob__orbit{position:relative; width:78px; height:78px; margin:.4em 0 .6em}
 .ob__orbit i{position:absolute; border-radius:50%; background:var(--ob-tint)}
-.ob__orbit i:nth-child(1){inset:14px; background:#D9E6E6}
+.ob__orbit i:nth-child(1){inset:14px; background:linear-gradient(160deg,#C9D9F5,#7C9FE0)}
 .ob__orbit i:nth-child(2){width:15px; height:15px; top:-2px; right:-4px; background:var(--ob-blue)}
 .ob__orbit i:nth-child(3){width:13px; height:13px; bottom:12px; left:-8px; background:var(--ob-blue)}
 .ob__orbit i:nth-child(4){width:9px; height:9px; top:8px; left:-6px}
@@ -419,6 +438,26 @@ b,strong{font-weight:600; color:var(--ink)}
     for.</p>
 </header>
 
+<section class="m-sec cover">
+  <div class="m-well">
+    <div class="ob-wrap"><div class="ob">
+      <div class="ob__tiles"><span></span><span></span></div>
+      <h4>Your Nearby World, Just a Tap Away</h4>
+      <p>Connect with people around you. Share, discover, and act in your area</p>
+      <span class="ob__btn">Start Connecting</span>
+      <div class="ob__globe" aria-hidden="true"></div>
+    </div></div>
+    <div class="ob-wrap"><div class="ob">
+      <div class="ob__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <h4>Post What Matters, See Only Nearby</h4>
+      <p>Share anything &mdash; sell, ask, or express. Your post reaches people near you instantly.</p>
+      <span class="ob__btn">Create your content</span>
+      <span class="ob__alt">Already have an account? <i>Sign In</i></span>
+      <span class="ob__bar" aria-hidden="true"></span>
+    </div></div>
+  </div>
+</section>
+
 <main id="main">
 
 <!-- ── ABOUT ── -->
@@ -557,7 +596,7 @@ b,strong{font-weight:600; color:var(--ink)}
 
     <div class="m-feat">
       <div class="m-well m-well--tight"><div class="ob-wrap"><div class="ob">
-        <div class="ob__pin" aria-hidden="true"></div>
+        <div class="ob__heart" aria-hidden="true"><i></i></div>
         <h4>A neighbourhood full of helpful people</h4>
         <p>We make it easier for everyone to connect, support and grow together</p>
         <div class="ob__blobs" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -574,6 +613,7 @@ b,strong{font-weight:600; color:var(--ink)}
         <p>Share anything &mdash; sell, ask, or express. Your post reaches people near you instantly.</p>
         <span class="ob__btn">Create your content</span>
         <span class="ob__alt">Already have an account? <i>Sign In</i></span>
+        <span class="ob__bar" aria-hidden="true"></span>
       </div></div></div>
       <p class="m-stmt">Screen three is the first and only ask.</p>
       <span class="m-tag">Post</span>
