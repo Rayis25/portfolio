@@ -285,6 +285,98 @@ b,strong{font-weight:600; color:var(--ink)}
 .ob__orbit i:nth-child(5){width:8px; height:8px; bottom:-2px; right:6px; background:#D9E6E6}
 .ob-wrap{display:flex; justify-content:center}
 
+/* account + merchant screen mockups — rebuilt in markup from the designs */
+.mk{--mk-blue:#2F6FED; --mk-ink:#0E0E10; --mk-muted:#8A8A90; --mk-line:#E7E6E4;
+  --mk-fill:#F1F0EE; --mk-tint:#E4ECFC;
+  width:100%; max-width:250px; background:#FCFCFB; border-radius:20px;
+  border:1px solid var(--line); padding:1.15em 1em; display:flex; flex-direction:column;
+  gap:.75em; text-align:left; font-size:.6rem}
+.mk__top{display:flex; align-items:center; justify-content:space-between; gap:.5em}
+.mk__x{width:16px; height:16px; position:relative}
+.mk__x::before,.mk__x::after{content:''; position:absolute; top:50%; left:0; width:100%;
+  height:1.4px; background:var(--mk-ink)}
+.mk__x::before{transform:rotate(45deg)} .mk__x::after{transform:rotate(-45deg)}
+.mk__back{width:14px; height:14px; border-left:1.6px solid var(--mk-blue);
+  border-bottom:1.6px solid var(--mk-blue); transform:rotate(45deg); margin-left:2px}
+.mk__avatar{width:20px; height:20px; border-radius:50%; background:var(--mk-fill);
+  border:1px solid var(--mk-line)}
+.mk__ttl{font-size:.66rem; font-weight:700; color:var(--mk-ink)}
+.mk__badge{display:inline-flex; width:fit-content; background:var(--mk-tint); color:var(--mk-blue);
+  font-size:.5rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  padding:.28em .6em; border-radius:999px}
+.mk h4{font-size:.78rem; line-height:1.2; font-weight:800; color:var(--mk-ink); text-wrap:balance}
+.mk p{font-size:.56rem; line-height:1.45; color:var(--mk-muted)}
+.mk__grp{display:flex; flex-direction:column; gap:.3em}
+.mk__lbl{font-size:.5rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+  color:#6B6A70}
+.mk__in{background:var(--mk-fill); border-radius:9px; padding:.55em .7em; color:#ABA9AE;
+  font-size:.56rem; display:flex; align-items:center; gap:.4em}
+.mk__row2{display:flex; gap:.4em}
+.mk__row2 .mk__in:first-child{flex:0 0 42px; justify-content:center; color:var(--mk-ink)}
+.mk__row2 .mk__in:last-child{flex:1}
+.mk__upload{border:1.4px dashed var(--mk-line); border-radius:11px; padding:1em .7em;
+  display:flex; flex-direction:column; align-items:center; gap:.4em; text-align:center}
+.mk__cloud{width:22px; height:22px; border-radius:50%; background:var(--mk-tint);
+  display:flex; align-items:center; justify-content:center}
+.mk__cloud::before{content:''; width:8px; height:6px; border:1.3px solid var(--mk-blue);
+  border-bottom:0; border-radius:5px 5px 0 0}
+.mk__upload b{font-size:.58rem; color:var(--mk-ink); font-weight:600}
+.mk__upload b i{font-style:normal; color:var(--mk-blue)}
+.mk__upload small{font-size:.5rem; color:var(--mk-muted)}
+.mk__toggle{display:flex; gap:.4em}
+.mk__seg{flex:1; border:1.4px solid var(--mk-line); border-radius:10px; padding:.55em .3em;
+  display:flex; flex-direction:column; align-items:center; gap:.3em; font-size:.52rem;
+  color:var(--mk-muted); position:relative}
+.mk__seg.on{border-color:var(--mk-blue); background:var(--mk-tint); color:var(--mk-blue);
+  font-weight:600}
+.mk__seg i{width:16px; height:16px; border-radius:50%; background:var(--mk-fill);
+  display:block}
+.mk__seg.on i{background:var(--mk-blue)}
+.mk__check{position:absolute; top:4px; right:4px; width:10px; height:10px; border-radius:50%;
+  background:var(--mk-blue)}
+.mk__check::after{content:''; position:absolute; left:2.5px; top:4px; width:4px; height:2px;
+  border-left:1.2px solid #fff; border-bottom:1.2px solid #fff; transform:rotate(-45deg)}
+.mk__map{border-radius:11px; overflow:hidden; border:1px solid var(--mk-line); background:#DCE6DC;
+  height:64px; position:relative}
+.mk__pin2{position:absolute; left:50%; top:50%; width:14px; height:14px; border-radius:50% 50% 50% 3px;
+  background:var(--mk-blue); transform:translate(-50%,-70%) rotate(-45deg)}
+.mk__cap{font-size:.48rem; color:var(--mk-muted); margin-top:.3em}
+.mk__choices{display:flex; flex-direction:column; gap:.32em}
+.mk__ch{display:flex; align-items:center; gap:.5em; border:1.4px solid var(--mk-line);
+  border-radius:9px; padding:.4em .55em; position:relative}
+.mk__ch.on{border-color:var(--mk-blue); background:var(--mk-tint)}
+.mk__ch i{width:16px; height:16px; border-radius:50%; background:var(--mk-fill); flex:none}
+.mk__ch.on i{background:#fff}
+.mk__ch span{font-size:.54rem; font-weight:600; color:var(--mk-ink)}
+.mk__foot{display:flex; align-items:center; justify-content:space-between; gap:.6em; margin-top:.15em}
+.mk__back2{font-size:.56rem; color:var(--mk-muted); font-weight:600}
+.mk__btn{background:var(--mk-blue); color:#fff; border-radius:999px; padding:.6em 1.1em;
+  font-size:.6rem; font-weight:700; text-align:center}
+.mk__btn--full{width:100%}
+.mk__tags{display:flex; flex-wrap:wrap; gap:.3em}
+.mk__tags span{border:1px solid var(--mk-line); border-radius:999px; padding:.25em .55em;
+  font-size:.5rem; color:var(--mk-muted)}
+.mk__ta{background:var(--mk-fill); border-radius:9px; padding:.55em .7em; color:#ABA9AE;
+  font-size:.55rem; min-height:2.6em}
+.mk__photo{border-radius:11px; background:linear-gradient(155deg,#EADFCF,#C9A876);
+  height:96px; position:relative}
+.mk__ov{position:absolute; top:.4em; right:.4em; display:flex; flex-direction:column;
+  align-items:flex-end; gap:.25em}
+.mk__ov span{background:rgba(20,18,14,.62); color:#fff; font-size:.46rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase; padding:.24em .5em; border-radius:999px}
+.mk__cat{font-size:.5rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--mk-muted)}
+.mk__price{display:inline-flex; width:fit-content; background:var(--mk-tint); color:var(--mk-blue);
+  font-weight:700; font-size:.68rem; padding:.3em .6em; border-radius:8px}
+.mk__desc{background:var(--mk-fill); border-radius:10px; padding:.55em .65em}
+.mk__desc b{font-size:.54rem; color:var(--mk-ink)}
+.mk__spec{display:flex; justify-content:space-between; padding:.28em 0;
+  border-top:1px solid var(--mk-line); font-size:.54rem}
+.mk__spec:first-child{border-top:0}
+.mk__spec b{color:var(--mk-ink); font-weight:600}
+.mk__stock{display:flex; align-items:flex-start; gap:.4em}
+.mk__stock i{width:9px; height:9px; border-radius:3px; background:var(--mk-blue); margin-top:.2em; flex:none}
+
 /* notification rows */
 .notif{border-top:1px solid var(--line)}
 .notif__r{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:1.4em;
@@ -508,6 +600,133 @@ b,strong{font-weight:600; color:var(--ink)}
       </ul>
     </div>
   </div>
+</section>
+
+<!-- ── SIGNUP ── -->
+<section class="m-sec">
+  <div class="m-split">
+    <div class="m-stack">
+      <span class="m-label">Sign-up</span>
+      <h2 class="m-h2">The account form doubles as a router</h2>
+      <p>Name, username and phone &mdash; the same three fields the app already asks for nowhere
+        else, no email-first pattern grafted on. Underneath that sits the one real branch in the
+        whole entry sequence: why someone is here.</p>
+      <p class="m-dim">&ldquo;To set up your store&rdquo; sits as one option among five, not a
+        separate business sign-up path. Picking it doesn&rsquo;t change the form &mdash; it just
+        decides what the app opens to next.</p>
+    </div>
+    <div class="m-well m-well--tight">
+      <div class="ob-wrap"><div class="mk">
+        <div class="mk__top"><div class="mk__x"></div></div>
+        <h4>Let&rsquo;s Create Your Wall Account</h4>
+        <p>Join the curated ecosystem of local commerce.</p>
+        <div class="mk__grp"><span class="mk__lbl">What is your name?</span>
+          <div class="mk__in">Write your full name</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Set your username</span>
+          <div class="mk__in">@ What should we call you&hellip;</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Enter your phone number</span>
+          <div class="mk__row2"><div class="mk__in">+1</div><div class="mk__in">000-000-0000</div></div></div>
+        <div class="mk__grp"><span style="font-size:.62rem; font-weight:700; color:var(--mk-ink)">Why do you want to use this platform?</span>
+          <div class="mk__choices">
+            <div class="mk__ch on"><i></i><span>To Socialise</span><div class="mk__check"></div></div>
+            <div class="mk__ch"><i></i><span>Explore nearby offers</span></div>
+            <div class="mk__ch"><i></i><span>Discover local shops</span></div>
+            <div class="mk__ch"><i></i><span>To set up your store</span></div>
+          </div>
+        </div>
+        <div class="mk__foot"><span class="mk__back2">&larr; Back</span><span class="mk__btn">Continue &rarr;</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MERCHANT ── -->
+<section class="m-sec m-stack-lg">
+  <div class="m-stack m-measure">
+    <span class="m-label">Merchant flow</span>
+    <h2 class="m-h2">Listing a store takes three screens &mdash; about as many as a post</h2>
+    <p>&ldquo;Stores Are Neighbours Too&rdquo; only means something if setting one up costs roughly
+      the same effort as writing a post. These are the three screens between choosing &ldquo;To set
+      up your store&rdquo; and having a live listing.</p>
+  </div>
+
+  <div class="m-grid m-grid-3 m-grid-feat">
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
+        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Store Setup</span><div class="mk__avatar"></div></div>
+        <span class="mk__badge">Step 1 of 2</span>
+        <h4>Set Up Your Store In Just 60 Seconds</h4>
+        <p>Create a professional storefront that connects with customers instantly.</p>
+        <div class="mk__grp"><span class="mk__lbl">What is your store name?</span>
+          <div class="mk__in">e.g. Azure Boutique</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Store picture</span>
+          <div class="mk__upload"><div class="mk__cloud"></div><b>Drag &amp; drop or <i>Browse</i></b>
+            <small>Supports PNG, JPG (Max 10MB)</small></div></div>
+        <div class="mk__grp"><span class="mk__lbl">What do you sell?</span>
+          <div class="mk__in">Select a category</div></div>
+        <div class="mk__grp"><span class="mk__lbl">How should customers contact you?</span>
+          <div class="mk__toggle">
+            <div class="mk__seg"><i></i>Phone call</div>
+            <div class="mk__seg on"><i></i>WhatsApp<div class="mk__check"></div></div>
+          </div></div>
+        <div class="mk__grp"><span class="mk__lbl">Store location</span>
+          <div class="mk__map"><div class="mk__pin2"></div></div>
+          <span class="mk__cap">Tap the map to adjust precise location</span></div>
+        <div class="mk__btn mk__btn--full">Continue Setup &rarr;</div>
+      </div></div></div>
+      <p class="m-stmt">Name, photo, category, contact method, location. Nothing else is asked.</p>
+      <span class="m-tag">Store setup</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
+        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Add Product</span><div class="mk__check" style="position:static; background:var(--mk-blue)"></div></div>
+        <h4>Add Your First Product</h4>
+        <p>Create a beautiful listing for your storefront.</p>
+        <div class="mk__upload"><div class="mk__cloud"></div><b>Upload Product Images</b>
+          <small>Recommended: 1080&times;1080px</small></div>
+        <div class="mk__grp"><span class="mk__lbl">Product name</span>
+          <div class="mk__in">e.g., Artisan Leather Bag</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Category selection</span>
+          <div class="mk__in">Select a category</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Price</span>
+          <div class="mk__in">0.00</div></div>
+        <div class="mk__grp"><span class="mk__lbl">Description</span>
+          <div class="mk__ta">Tell the story behind your product&hellip;</div></div>
+        <div class="mk__tags"><span>New Arrival &times;</span><span>Limited Edition &times;</span><span>+ Add Tag</span></div>
+        <div class="mk__btn mk__btn--full">Add to Inventory</div>
+      </div></div></div>
+      <p class="m-stmt">Listing an item is the same shape as posting: a photo, a price, a few words.</p>
+      <span class="m-tag">Step 2 of 2</span>
+    </div>
+
+    <div class="m-feat">
+      <div class="m-well m-well--tight"><div class="ob-wrap"><div class="mk">
+        <div class="mk__top"><div class="mk__back"></div><span class="mk__ttl">Product Preview</span><span style="color:var(--mk-muted)">&#8942;</span></div>
+        <div class="mk__photo"><div class="mk__ov"><span>New Arrival</span><span>Limited Edition</span></div></div>
+        <span class="mk__cat">Fashion &amp; Accessories</span>
+        <h4 style="margin-top:-.4em">Artisan Leather Bag</h4>
+        <span class="mk__price">4,500</span>
+        <div class="mk__desc"><b>Description</b>
+          <p style="margin-top:.3em">Handcrafted, premium leather with adjustable straps and multiple compartments.</p></div>
+        <div>
+          <div class="mk__spec"><span>Material</span><b>Genuine Leather</b></div>
+          <div class="mk__spec"><span>Colour</span><b>Tan Brown</b></div>
+          <div class="mk__spec"><span>Weight</span><b>1.2 kg</b></div>
+        </div>
+        <div class="mk__stock"><i></i><div><b style="font-size:.58rem; color:var(--mk-ink)">Ready for Listing</b>
+          <p style="margin:0">Location: Warehouse A &middot; updated 2 mins ago</p></div></div>
+        <div class="mk__btn mk__btn--full">Confirm &amp; Add</div>
+      </div></div></div>
+      <p class="m-stmt">Every listing previews the same way &mdash; no boosted layout, no promoted styling.</p>
+      <span class="m-tag">Preview</span>
+    </div>
+  </div>
+
+  <p class="m-measure m-dim">Nothing in this flow ranks a listing by spend. The preview a first-time
+    seller sees is the same template a store with years of history sees &mdash; the &ldquo;same UI
+    regardless of activity&rdquo; principle from the anti-pattern list, carried all the way to the
+    edit screen.</p>
 </section>
 
 <!-- ── FLOWS ── -->
