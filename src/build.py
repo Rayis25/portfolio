@@ -32,6 +32,7 @@ SRC = pathlib.Path(__file__).resolve().parent
 ROOT = SRC.parent
 THEMES = SRC / "themes"
 CASES = SRC / "cases"
+ASSETS = SRC / "assets"   # site-wide assets (currently just the index page)
 
 PRIMARY_THEME = "minimal"
 
@@ -108,7 +109,7 @@ def main() -> None:
     if not index_tpl.is_file():
         raise SystemExit(f"missing portfolio index template {index_tpl.name}")
     (ROOT / "index.html").write_text(
-        wrap_document(build(index_tpl, PRIMARY_THEME)), encoding="utf-8")
+        wrap_document(build(index_tpl, PRIMARY_THEME, ASSETS)), encoding="utf-8")
     written.append(ROOT / "index.html")
 
     case_dirs = sorted(d for d in CASES.iterdir() if d.is_dir())

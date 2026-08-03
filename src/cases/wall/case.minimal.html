@@ -18,11 +18,13 @@
 .m-shot--phone{max-width:222px; margin:0 auto}
 .m-shot--tall{max-width:280px; margin:0 auto}
 
-/* cover collage — two real screens shown poster-style under the hero */
+/* cover collage — three real screens in a horizontal row under the hero */
 .cover{padding-bottom:0}
-.cover .m-well{gap:clamp(16px,3.4vw,40px); flex-wrap:wrap; padding:clamp(26px,5vw,54px) clamp(18px,3.4vw,36px)}
-.cover .m-shot:first-child{transform:rotate(-4deg)}
-.cover .m-shot:last-child{transform:rotate(3deg)}
+.cover .m-well{gap:clamp(14px,2.6vw,30px); flex-wrap:wrap; padding:clamp(26px,5vw,54px) clamp(18px,3.4vw,36px)}
+.cover .m-shot{max-width:200px}
+.cover .m-shot:nth-child(1){transform:rotate(-3deg)}
+.cover .m-shot:nth-child(2){transform:rotate(1.5deg)}
+.cover .m-shot:nth-child(3){transform:rotate(4deg)}
 
 /* notification rows */
 .notif{border-top:1px solid var(--line)}
@@ -69,6 +71,7 @@
 <section class="m-sec cover">
   <div class="m-well">
     <div class="m-shot"><img src="@IMG_ONBOARD1@" alt="Wall welcome screen: Your Nearby World, Just a Tap Away, with two photos of neighbours and a Start Connecting button." width="640" height="1387"></div>
+    <div class="m-shot"><img src="@IMG_ONBOARD2@" alt="Wall mission screen: We Are On A Mission To Connect Neighbourhood, with three photos of neighbours." width="393" height="852"></div>
     <div class="m-shot"><img src="@IMG_ONBOARD3@" alt="Wall onboarding screen: Post What Matters, See Only Nearby, with a photo of a neighbour waving." width="393" height="852"></div>
   </div>
 </section>

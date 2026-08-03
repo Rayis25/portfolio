@@ -12,12 +12,10 @@
   gap:clamp(2em,4vw,3.4em); margin-bottom:clamp(64px,10vw,140px)}
 .card{display:flex; flex-direction:column; gap:1.1em; color:inherit; text-decoration:none}
 .card:hover{text-decoration:none}
-.card__w{min-height:clamp(180px,22vw,264px); text-align:center;
-  transition:background-color .18s ease}
+.card__w{aspect-ratio:3/2; padding:0; overflow:hidden; transition:background-color .18s ease}
 .card:hover .card__w{background:var(--well-2)}
-.card__q{font-size:clamp(1.1rem,2vw,1.5rem); line-height:1.3; letter-spacing:-.022em;
-  font-weight:600; color:var(--ink); max-width:16ch}
-.card__q em{font-style:normal; color:var(--accent)}
+.card__w img{width:100%; height:100%; object-fit:cover; transition:transform .25s ease}
+.card:hover .card__w img{transform:scale(1.035)}
 .card h2{font-size:1.32rem; letter-spacing:-.022em}
 .card__d{color:var(--muted); font-size:.97rem; line-height:1.55}
 .card__go{font:500 var(--t-label)/1 var(--mono); letter-spacing:.14em; text-transform:uppercase;
@@ -53,7 +51,7 @@
 
     <a class="card" href="/draftroom">
       <div class="m-well card__w">
-        <span class="card__q">Five fragmented surfaces, <em>consolidated into one</em></span>
+        <img src="@IMG_DRAFTROOM@" alt="Draftroom workspace shell, a dark UI with a quiet sidebar and a single New Project action." width="600" height="400" loading="lazy">
       </div>
       <h2>Draftroom</h2>
       <p class="card__d">A B2B work-management product for creative agencies was built, shipped and
@@ -67,7 +65,7 @@
 
     <a class="card" href="/wall">
       <div class="m-well card__w">
-        <span class="card__q">No streaks, no like counts, <em>and a feed that ends</em></span>
+        <img src="@IMG_WALL@" alt="Wall welcome screen with two photos of neighbours and the headline Your Nearby World, Just a Tap Away." width="640" height="427" loading="lazy">
       </div>
       <h2>Wall</h2>
       <p class="card__d">A hyper-local social app for neighbours. The product strategy is mostly a
