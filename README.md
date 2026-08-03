@@ -4,7 +4,20 @@ Case studies by **Muhammad Rayis**, Lead UX Designer.
 
 | Case study | Live file | Source |
 | --- | --- | --- |
-| Draftroom — solving project management for creative teams | [`case-studies/draftroom/index.html`](case-studies/draftroom/index.html) | [`src/draftroom/`](src/draftroom/) |
+| Draftroom — solving project management for creative teams | [`index.html`](index.html) | [`src/draftroom/`](src/draftroom/) |
+
+## Deployment
+
+The site is static — no framework, no install, no build step on the host. Vercel,
+Netlify and GitHub Pages all serve it as-is from the repository root.
+
+`index.html` is committed **at the root** because that is what a static host serves
+at `/`. Keeping the page only at a nested path is what produces a 404 on the bare
+domain. When a second case study lands, the root becomes an index that links to
+each one, and the case studies move under `case-studies/`.
+
+`vercel.json` sets `cleanUrls` and disables trailing slashes; it declares no build
+command, which is what keeps the deployment a plain static upload.
 
 ## How a case study is built
 
@@ -27,11 +40,13 @@ Rebuild after editing the template or swapping an asset:
 python3 src/draftroom/build.py
 ```
 
-It writes two files into `case-studies/draftroom/`:
+It writes two files:
 
-- **`index.html`** — a complete document. Open it in a browser or serve it as-is.
-- **`artifact.html`** — the same page without `<!doctype>`/`<html>`/`<head>`/`<body>`,
-  for hosts that supply their own document shell.
+- **`index.html`** (repo root) — a complete document. Open it in a browser, or let a
+  static host serve it at `/`.
+- **`case-studies/draftroom/artifact.html`** — the same page without
+  `<!doctype>`/`<html>`/`<head>`/`<body>`, for hosts that supply their own document
+  shell. This path is stable; the published artifact tracks it.
 
 Both are committed, so the case study is viewable straight from the repo without
 running anything.
