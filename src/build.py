@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
-"""Build every case study into a self-contained page.
+"""Build every case study, in every theme it has been written for.
 
-A case is a directory under src/cases/ holding `case.html` plus an `assets/`
-folder. The build inlines the shared theme, the subsetted webfonts, and each
-image referenced by an @IMG_*@ token, producing files with no external requests
-at all — no CDN, no asset paths, nothing to break when the page is moved.
+A case is a directory under src/cases/ holding an `assets/` folder and one or
+more `case.<theme>.html` templates. Each template names the theme it is written
+against; the theme supplies the tokens, primitives and webfaces from
+src/themes/<theme>/. The build inlines the theme CSS, the subsetted fonts, and
+every image referenced by an @IMG_*@ token, producing files with no external
+requests at all — nothing to break when a page is moved or served from a
+different host.
 
-Outputs per case:
-  case-studies/<name>/artifact.html   body-only fragment, for hosts that supply
-                                      their own document shell
-  index.html                          full document, for the case marked PRIMARY
+Outputs:
+  case-studies/<case>/<theme>.html   body-only fragment, for hosts that supply
+                                     their own document shell
+  index.html                         full document, built from PRIMARY_CASE in
+                                     PRIMARY_THEME
 
-The primary case is written to the repository root because that is what static
-hosts serve at `/`. Keeping the page only at a nested path is what produces a
-404 on the bare domain.
+The primary page is written to the repository root because that is what static
+hosts serve at `/`. Keeping it only at a nested path is what produces a 404 on
+the bare domain.
 
 Usage:  python3 src/build.py
 """
@@ -24,19 +28,27 @@ import sys
 
 SRC = pathlib.Path(__file__).resolve().parent
 ROOT = SRC.parent
-THEME = SRC / "theme"
+THEMES = SRC / "themes"
 CASES = SRC / "cases"
 
-PRIMARY = "draftroom"
+PRIMARY_CASE = "draftroom"
+PRIMARY_THEME = "minimal"
 
 MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
         ".gif": "image/gif", ".webp": "image/webp", ".svg": "image/svg+xml"}
 
 
-def build(case_dir: pathlib.Path) -> str:
-    html = (case_dir / "case.html").read_text(encoding="utf-8")
-    html = html.replace("/*@FONTS@*/", (THEME / "fonts.css").read_text(encoding="utf-8"))
-    html = html.replace("/*@THEME@*/", (THEME / "theme.css").read_text(encoding="utf-8"))
+def build(case_dir: pathlib.Path, theme: str) -> str:
+    theme_dir = THEMES / theme
+    if not theme_dir.is_dir():
+        raise SystemExit(f"{case_dir.name}: no theme named {theme!r} in src/themes/")
+
+    html = (case_dir / f"case.{theme}.html").read_text(encoding="utf-8")
+    for token, path in (("/*@FONTS@*/", theme_dir / "fonts.css"),
+                        ("/*@THEME@*/", theme_dir / "theme.css")):
+        if token not in html:
+            raise SystemExit(f"{case_dir.name}/{theme}: template is missing {token}")
+        html = html.replace(token, path.read_text(encoding="utf-8"))
 
     # @IMG_NAME@ resolves to assets/img_name.<ext>
     for token in sorted(set(re.findall(r"@IMG_[A-Z0-9_]+@", html))):
@@ -48,19 +60,21 @@ def build(case_dir: pathlib.Path) -> str:
         mime = MIME.get(asset.suffix.lower())
         if not mime:
             raise SystemExit(f"{case_dir.name}: unsupported asset type {asset.name}")
-        data = base64.b64encode(asset.read_bytes()).decode()
-        html = html.replace(token, f"data:{mime};base64,{data}")
+        html = html.replace(token, f"data:{mime};base64,"
+                            + base64.b64encode(asset.read_bytes()).decode())
 
     leftover = set(re.findall(r"@[A-Z0-9_]+@|/\*@\w+@\*/", html))
     if leftover:
-        raise SystemExit(f"{case_dir.name}: unreplaced build tokens: {leftover}")
+        raise SystemExit(f"{case_dir.name}/{theme}: unreplaced build tokens: {leftover}")
     return html
 
 
 def wrap_document(fragment: str) -> str:
-    title = re.search(r"<title>(.*?)</title>", fragment, re.S)
-    if not title:
-        raise SystemExit("case.html must contain a <title>")
+    if not re.search(r"<title>.*?</title>", fragment, re.S):
+        raise SystemExit("template must contain a <title>")
+    skip = re.search(r'<a class="[\w-]*skip"', fragment)
+    if not skip:
+        raise SystemExit("template must open its body with a skip link")
     head = (
         '<!doctype html>\n<html lang="en">\n<head>\n'
         '<meta charset="utf-8">\n'
@@ -69,29 +83,33 @@ def wrap_document(fragment: str) -> str:
         'product around how creative teams actually work.">\n'
         '<meta name="color-scheme" content="light dark">\n'
     )
-    body = fragment.replace('<a class="t-skip"', '</head>\n<body>\n<a class="t-skip"', 1)
-    if "</head>" not in body:
-        raise SystemExit("case.html must contain the skip link that opens <body>")
+    body = fragment.replace(skip.group(0), "</head>\n<body>\n" + skip.group(0), 1)
     return head + body + "\n</body>\n</html>\n"
 
 
 def main() -> None:
-    case_dirs = sorted(d for d in CASES.iterdir() if (d / "case.html").is_file())
-    if not case_dirs:
-        raise SystemExit("no cases found under src/cases/")
-    if PRIMARY not in {d.name for d in case_dirs}:
-        raise SystemExit(f"PRIMARY case {PRIMARY!r} not found")
-
+    case_dirs = sorted(d for d in CASES.iterdir() if d.is_dir())
     written = []
+    primary_seen = False
+
     for case_dir in case_dirs:
-        fragment = build(case_dir)
+        themes = sorted(p.name.split(".")[1] for p in case_dir.glob("case.*.html"))
+        if not themes:
+            raise SystemExit(f"{case_dir.name}: no case.<theme>.html templates found")
         out = ROOT / "case-studies" / case_dir.name
         out.mkdir(parents=True, exist_ok=True)
-        (out / "artifact.html").write_text(fragment, encoding="utf-8")
-        written.append(out / "artifact.html")
-        if case_dir.name == PRIMARY:
-            (ROOT / "index.html").write_text(wrap_document(fragment), encoding="utf-8")
-            written.append(ROOT / "index.html")
+
+        for theme in themes:
+            fragment = build(case_dir, theme)
+            (out / f"{theme}.html").write_text(fragment, encoding="utf-8")
+            written.append(out / f"{theme}.html")
+            if case_dir.name == PRIMARY_CASE and theme == PRIMARY_THEME:
+                (ROOT / "index.html").write_text(wrap_document(fragment), encoding="utf-8")
+                written.append(ROOT / "index.html")
+                primary_seen = True
+
+    if not primary_seen:
+        raise SystemExit(f"primary {PRIMARY_CASE}/{PRIMARY_THEME} was never built")
 
     for path in written:
         print(f"{path.relative_to(ROOT).as_posix():38} {path.stat().st_size / 1024:8.1f} KB")
