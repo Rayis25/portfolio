@@ -34,7 +34,7 @@ THEMES = SRC / "themes"
 CASES = SRC / "cases"
 ASSETS = SRC / "assets"   # site-wide assets (currently just the index page)
 
-PRIMARY_THEME = "minimal"
+PRIMARY_THEME = "handdrawn"
 
 MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
         ".gif": "image/gif", ".webp": "image/webp", ".svg": "image/svg+xml"}
